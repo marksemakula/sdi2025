@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #74C365;
+    --secondary: #FF5F1F;
+    --tertiary: #0F52BA;
+  }
+
+  html {
+    font-family: 'Urbanist', system-ui, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    font-family: inherit; /* Inherits from html element */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Remove green lines and focus rings */
+  * {
+    outline: none !important;
+  }
+
+  hr, .divider {
+    border-color: transparent !important;
+  }
+
+  [motion] {
+    --tw-ring-color: transparent !important;
+  }
+}
