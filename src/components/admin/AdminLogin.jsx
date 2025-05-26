@@ -1,20 +1,21 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaLock, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { FaLock, FaUser } from 'react-icons/fa';
 
 const AdminLogin = ({ onLogin }) => {
-  const [credentials, setCredentials] = useState({ 
-    email: '', 
-    password: '' 
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (credentials.email === 'admin@specialistdoctors-international.org' && 
-        credentials.password === '@Student1705') {
+    
+    // Actual credentials (not shown in UI)
+    const ADMIN_EMAIL = 'admin@specialistdoctors-international.org';
+    const ADMIN_PASSWORD = '@Student1705';
+    
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       onLogin();
       navigate('/admin');
     } else {
@@ -23,84 +24,67 @@ const AdminLogin = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full bg-white p-8 rounded-lg shadow-md"
-      >
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-tertiary mb-2">
-            Admin Portal
-          </h2>
-          <p className="text-gray-600">Sign in to manage content</p>
-        </div>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold text-tertiary mb-6 text-center">Admin Login</h2>
+        
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+            {error}
+          </div>
+        )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && (
-            <div className="p-3 bg-red-100 text-red-700 rounded-md text-sm">
-              {error}
-            </div>
-          )}
-
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaUser className="text-gray-400" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="pl-10 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                  placeholder="admin@specialistdoctors-international.org"
-                  value={credentials.email}
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, email: e.target.value })
-                  }
-                />
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="email">
+              Email
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FaUser className="text-gray-400" />
               </div>
+              <input
+                id="email"
+                type="email"
+                className="pl-10 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="Enter your admin email"  // Changed from actual email
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
+          </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="pl-10 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                  placeholder="@Student1705"
-                  value={credentials.password}
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, password: e.target.value })
-                  }
-                />
+          <div className="mb-6">
+            <label className="block text-gray-700 mb-2" htmlFor="password">
+              Password
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FaLock className="text-gray-400" />
               </div>
+              <input
+                id="password"
+                type="password"
+                className="pl-10 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="Enter your password"  // Changed from actual password
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
           </div>
 
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-300"
             >
-              Sign in
+              Sign In
             </button>
           </div>
         </form>
-      </motion.div>
+      </div>
     </div>
   );
 };
