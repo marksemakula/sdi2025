@@ -1,18 +1,46 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaUserMd, FaHospital, FaAmbulance } from 'react-icons/fa';
 import HeroCarousel from '../components/HeroCarousel';
 
 const Home = () => {
+  const [formData, setFormData] = useState({
+    patientName: '',
+    referredBy: '',
+    serviceNeeded: '',
+    phoneNumber: '',
+    symptoms: '',
+    appointmentDate: '2025-05-27'
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const message = `New Appointment Request:
+    Patient Name: ${formData.patientName}
+    Referred By: ${formData.referredBy || 'Not specified'}
+    Service Needed: ${formData.serviceNeeded}
+    Phone Number: ${formData.phoneNumber}
+    Symptoms: ${formData.symptoms || 'Not specified'}
+    Preferred Date: ${formData.appointmentDate}`;
+
+    const whatsappUrl = `https://wa.me/256702652046?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section with Carousel */}
       <section className="relative h-[600px] overflow-hidden">
         <HeroCarousel />
         
-        {/* Content container */}
         <div className="relative z-10 h-full flex items-center">
           <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-            {/* Text and buttons container */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -42,7 +70,6 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Logo container */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -51,7 +78,6 @@ const Home = () => {
               style={{ width: 'calc(256px * 1.62)' }}
             >
               <div className="relative w-full h-full">
-                {/* Shadow element */}
                 <img 
                   src="/images/SDI_Logo.png" 
                   alt="" 
@@ -62,7 +88,6 @@ const Home = () => {
                     transform: 'translate(2px, 2px)'
                   }}
                 />
-                {/* Main logo */}
                 <img 
                   src="/images/SDI_Logo.png" 
                   alt="SDI Logo" 
@@ -83,7 +108,6 @@ const Home = () => {
             transition={{ duration: 0.5 }}
             className="bg-white p-8 rounded-lg shadow-[0_0_25px_rgba(0,0,0,0.15)] relative"
           >
-            {/* Enhanced shadow effect */}
             <div className="absolute inset-0 rounded-lg shadow-[0_0_25px_rgba(0,0,0,0.15)] -z-10"></div>
             
             <h2 className="text-3xl mb-8 text-center relative">
@@ -100,76 +124,101 @@ const Home = () => {
               <span className="font-cinzel font-thin text-tertiary">APPOINTMENT</span>
             </h2>
             
-            <div className="space-y-6">
-              {/* First row - Patient Name, Referred by, Service Needed */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <h3 className="text-sm font-medium mb-2 font-urbanist">Patient name</h3>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
-                    placeholder="Enter patient name"
-                  />
+            <form onSubmit={handleSubmit}>
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 font-urbanist">Patient name</h3>
+                    <input 
+                      type="text" 
+                      name="patientName"
+                      value={formData.patientName}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      placeholder="Enter patient name"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 font-urbanist">Referred by? name / contact</h3>
+                    <input 
+                      type="text"
+                      name="referredBy"
+                      value={formData.referredBy}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      placeholder="Referrer name or contact"
+                    />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 font-urbanist">Service needed</h3>
+                    <select 
+                      name="serviceNeeded"
+                      value={formData.serviceNeeded}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      required
+                    >
+                      <option value="">Select a service</option>
+                      <option value="Consultation">Consultation</option>
+                      <option value="Scan">Scan</option>
+                      <option value="Lab Test">Lab Test</option>
+                      <option value="Surgery">Surgery</option>
+                    </select>
+                  </div>
                 </div>
                 
-                <div>
-                  <h3 className="text-sm font-medium mb-2 font-urbanist">Referred by? name / contact</h3>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
-                    placeholder="Referrer name or contact"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 font-urbanist">Phone number</h3>
+                    <input 
+                      type="tel"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      placeholder="XXXXXXXXXX"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 font-urbanist">Symptoms</h3>
+                    <input
+                      type="text"
+                      name="symptoms"
+                      value={formData.symptoms}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      placeholder="Describe symptoms"
+                    />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-sm font-medium mb-2 font-urbanist">Choose date</h3>
+                    <input 
+                      type="date" 
+                      name="appointmentDate"
+                      value={formData.appointmentDate}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      required
+                    />
+                  </div>
                 </div>
                 
-                <div>
-                  <h3 className="text-sm font-medium mb-2 font-urbanist">Service needed</h3>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist">
-                    <option value="">Select a service</option>
-                    <option value="consultation">Consultation</option>
-                    <option value="scan">Scan</option>
-                    <option value="lab-test">Lab Test</option>
-                    <option value="surgery">Surgery</option>
-                  </select>
+                <div className="pt-4">
+                  <button 
+                    type="submit"
+                    className="w-full md:w-auto mx-auto block bg-primary hover:bg-primary/90 text-white py-3 px-12 rounded-md font-medium transition-colors font-urbanist"
+                  >
+                    SUBMIT NOW
+                  </button>
                 </div>
               </div>
-              
-              {/* Second row - Phone Number, Symptoms, Choose Date */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <h3 className="text-sm font-medium mb-2 font-urbanist">Phone number</h3>
-                  <input 
-                    type="tel" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
-                    placeholder="XXXXXXXXXX"
-                  />
-                </div>
-                
-                <div>
-                  <h3 className="text-sm font-medium mb-2 font-urbanist">Symptoms</h3>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
-                    placeholder="Describe symptoms"
-                  />
-                </div>
-                
-                <div>
-                  <h3 className="text-sm font-medium mb-2 font-urbanist">Choose date</h3>
-                  <input 
-                    type="date" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
-                    defaultValue="2025-05-27"
-                  />
-                </div>
-              </div>
-              
-              {/* Submit button */}
-              <div className="pt-4">
-                <button className="w-full md:w-auto mx-auto block bg-primary hover:bg-primary/90 text-white py-3 px-12 rounded-md font-medium transition-colors font-urbanist">
-                  SUBMIT NOW
-                </button>
-              </div>
-            </div>
+            </form>
           </motion.div>
         </div>
       </section>
@@ -213,7 +262,6 @@ const Home = () => {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
               >
-                {/* Image thumbnail */}
                 <div className="h-48 overflow-hidden">
                   <img 
                     src={service.image} 
@@ -222,7 +270,6 @@ const Home = () => {
                   />
                 </div>
                 
-                {/* Content */}
                 <div className="p-6">
                   <service.icon className="text-primary text-4xl mb-4" />
                   <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
