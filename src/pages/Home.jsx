@@ -86,8 +86,8 @@ const Home = () => {
             {/* Enhanced shadow effect */}
             <div className="absolute inset-0 rounded-lg shadow-[0_0_25px_rgba(0,0,0,0.15)] -z-10"></div>
             
-            <h2 className="text-3xl font-bold mb-8 text-center relative">
-              <span className="font-cinzel text-primary relative">
+            <h2 className="text-3xl mb-8 text-center relative">
+              <span className="font-cinzel font-thin text-primary relative">
                 BOOK
                 <span 
                   className="absolute bottom-0 left-1 h-1 bg-secondary"
@@ -97,7 +97,7 @@ const Home = () => {
                   }}
                 ></span>
               </span>{' '}
-              <span className="font-cinzel text-tertiary">APPOINTMENT</span>
+              <span className="font-cinzel font-thin text-tertiary">APPOINTMENT</span>
             </h2>
             
             <div className="space-y-6">

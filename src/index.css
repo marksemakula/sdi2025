@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 @layer base {
@@ -14,6 +14,7 @@
 
   html {
     font-family: 'Urbanist', system-ui, sans-serif;
+    font-weight: 400;
   }
 
   body {
@@ -22,12 +23,30 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
+    text-rendering: optimizeLegibility;
   }
 
   #root {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+
+  /* Font face declarations for better control */
+  @font-face {
+    font-family: 'Cinzel';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Cinzel:wght@100;200;300;400;500;600;700&display=swap');
+  }
+
+  @font-face {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
   }
 
   * {
@@ -40,5 +59,19 @@
 
   [motion] {
     --tw-ring-color: transparent !important;
+  }
+
+  /* Custom underline style for Cinzel text */
+  .cinzel-underline {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0.25rem; /* Starts after the first letter */
+      bottom: -4px;
+      width: calc(100% - 0.5rem);
+      height: 2px;
+      background-color: var(--secondary);
+    }
   }
 }
