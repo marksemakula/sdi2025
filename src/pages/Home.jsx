@@ -56,13 +56,13 @@ const Home = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="#/referral" 
+                  href="https://www.specialistdoctors-international.org/referral" 
                   className="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)]"
                 >
                   Make a Referral
                 </a>
                 <a 
-                  href="#/telemedicine"
+                  href="https://www.specialistdoctors-international.org/telemedicine"
                   className="bg-white hover:bg-gray-100 text-tertiary px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.1)]"
                 >
                   Virtual Consultation
@@ -164,6 +164,9 @@ const Home = () => {
                       <option value="">Select a service</option>
                       <option value="Consultation">Consultation</option>
                       <option value="Scan">Scan</option>
+                      <option value="Lab Test">ANC</option>
+                      <option value="Lab Test">Dental</option>
+                      <option value="Lab Test">Physiotherapy</option>
                       <option value="Lab Test">Lab Test</option>
                       <option value="Surgery">Surgery</option>
                     </select>

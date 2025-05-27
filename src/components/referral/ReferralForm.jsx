@@ -119,10 +119,11 @@ const ReferralForm = ({ onSubmit, schedules }) => {
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
           >
             <option value="">Select a service</option>
-            <option value="cardiology">Cardiology</option>
-            <option value="neurology">Neurology</option>
-            <option value="orthopedics">Orthopedics</option>
-            <option value="pediatrics">Pediatrics</option>
+            <option value="cardiology">ANC</option>
+            <option value="neurology">Physiotherapy</option>
+            <option value="neurology">Dental</option>
+            <option value="orthopedics">Maternity</option>
+            <option value="pediatrics">Imaging/Scan</option>
           </select>
         </div>
 

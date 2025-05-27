@@ -22,15 +22,47 @@ const preloadedState = {
     schedules: getLocalStorageData('schedules', referralReducer(undefined, {}).schedules)
   },
   careers: {
-    // Add careers initial state if needed
-    ...careersReducer(undefined, {})
+    jobs: getLocalStorageData('careersJobs', [
+      {
+        id: '1',
+        title: "Senior Cardiologist",
+        department: "Cardiology",
+        location: "Main Medical Center",
+        type: "Full-time",
+        experience: "5+ years",
+        description: "Looking for an experienced cardiologist to join our heart center team...",
+        requirements: [
+          "Board certification in Cardiology",
+          "5+ years of clinical experience",
+          "Strong research background",
+          "Excellent patient care skills"
+        ],
+        postedDate: new Date().toISOString().split('T')[0]
+      },
+      {
+        id: '2',
+        title: "Pediatric Specialist",
+        department: "Pediatrics",
+        location: "Children's Wing",
+        type: "Full-time",
+        experience: "3+ years",
+        description: "Seeking a dedicated pediatric specialist to provide comprehensive care...",
+        requirements: [
+          "Board certification in Pediatrics",
+          "3+ years of pediatric experience",
+          "Strong communication skills",
+          "Experience with complex cases"
+        ],
+        postedDate: new Date().toISOString().split('T')[0]
+      }
+    ]),
+    applications: getLocalStorageData('careersApplications', []),
+    error: null
   },
   telemedicine: {
-    // Add telemedicine initial state if needed
     ...telemedicineReducer(undefined, {})
   },
   blog: {
-    // Initialize blog state
     posts: getLocalStorageData('blogPosts', []),
     loading: false,
     error: null
@@ -48,36 +80,36 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware({
       serializableCheck: {
-        // Ignore these field paths in all actions
         ignoredActionPaths: ['payload.timestamp', 'payload.error'],
-        // Ignore these paths in the state
         ignoredPaths: [
-          'referral.schedules', 
+          'referral.schedules',
           'telemedicine.someNonSerializableField',
-          'blog.posts.image' // If you have non-serializable image data
+          'blog.posts.image',
+          'careers.jobs.requirements' // If requirements contain non-serializable data
         ]
       }
     }),
   devTools: process.env.NODE_ENV !== 'production'
 });
 
-// Optional: Subscribe to store changes for persistence
+// Subscribe to store changes for persistence
 store.subscribe(() => {
   try {
-    const { referral, blog } = store.getState();
+    const { referral, careers, blog } = store.getState();
     
     // Persist referral data
     localStorage.setItem('referrals', JSON.stringify(referral.referrals));
     localStorage.setItem('schedules', JSON.stringify(referral.schedules));
     
-    // Persist blog posts if they exist
-    if (blog.posts && blog.posts.length > 0) {
-      localStorage.setItem('blogPosts', JSON.stringify(blog.posts));
-    }
+    // Persist careers data
+    localStorage.setItem('careersJobs', JSON.stringify(careers.jobs));
+    localStorage.setItem('careersApplications', JSON.stringify(careers.applications));
+    
+    // Persist blog posts
+    localStorage.setItem('blogPosts', JSON.stringify(blog.posts));
   } catch (error) {
     console.error('Error persisting state to localStorage:', error);
   }
 });
 
-// Export the store instance
 export default store;
