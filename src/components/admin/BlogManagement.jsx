@@ -1,4 +1,3 @@
-// src/components/admin/BlogManagement.jsx
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
@@ -21,7 +20,7 @@ const BlogManagement = () => {
     category: 'General',
     image: '',
     content: '',
-    date: new Date().toISOString().split('T')[0] // Add date field
+    date: new Date().toISOString().split('T')[0]
   });
   const [formErrors, setFormErrors] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -54,7 +53,6 @@ const BlogManagement = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user types
     if (formErrors[name]) {
       setFormErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -70,15 +68,23 @@ const BlogManagement = () => {
     }
 
     if (isEditing) {
+      // Corrected dispatch format for updateBlogPost
       dispatch(updateBlogPost({
         id: currentPost.id,
-        updates: formData
+        updates: {
+          title: formData.title,
+          excerpt: formData.excerpt,
+          category: formData.category,
+          image: formData.image,
+          content: formData.content,
+          date: formData.date
+        }
       }));
       setSuccessMessage('Blog post updated successfully!');
     } else {
       dispatch(addBlogPost({
         ...formData,
-        id: Date.now().toString() // Generate unique ID
+        id: Date.now().toString()
       }));
       setSuccessMessage('Blog post created successfully!');
     }

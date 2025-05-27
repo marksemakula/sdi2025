@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-// Helper function for date formatting
+// Helper function for consistent date formatting
 const formatDate = (dateString = null) => {
   const date = dateString ? new Date(dateString) : new Date();
   return {
@@ -115,6 +115,10 @@ const blogSlice = createSlice({
             ...updates,
             updatedAt: date.iso
           };
+
+          // Preserve created date and ID
+          updatedPost.id = state.posts[index].id;
+          updatedPost.createdAt = state.posts[index].createdAt;
 
           state.posts[index] = updatedPost;
           state.lastUpdated = date.iso;
