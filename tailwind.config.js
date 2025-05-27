@@ -23,6 +23,9 @@ export default {
       backgroundPosition: {
         'center': 'center',
       },
+      screens: {
+        'xs': '480px', // Add extra small breakpoint if needed
+      },
     },
   },
   plugins: [],

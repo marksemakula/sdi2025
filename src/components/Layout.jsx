@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="flex-grow mt-16" // Added mt-16 for navbar height
+        className="flex-grow mt-16 md:mt-16" // Added responsive margin-top
       >
         <ErrorBoundary>
           {children}
