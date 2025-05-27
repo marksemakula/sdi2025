@@ -8,6 +8,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Urbanist', 'sans-serif'],
+        cinzel: ['Cinzel', 'serif'],
+        urbanist: ['Urbanist', 'sans-serif'],
       },
       colors: {
         primary: '#74C365',
@@ -24,7 +26,7 @@ export default {
         'center': 'center',
       },
       screens: {
-        'xs': '480px', // Add extra small breakpoint if needed
+        'xs': '480px',
       },
     },
   },

@@ -42,13 +42,13 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Logo container - now 62% larger (original 256px × 1.62 = 414.72px) */}
+            {/* Logo container */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="hidden lg:block relative z-20 -ml-8"
-              style={{ width: 'calc(256px * 1.62)' }} // Fixed: Proper parentheses
+              style={{ width: 'calc(256px * 1.62)' }}
             >
               <div className="relative w-full h-full">
                 {/* Shadow element */}
@@ -71,6 +71,106 @@ const Home = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Appointment Booking Form */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white p-8 rounded-lg shadow-[0_0_25px_rgba(0,0,0,0.15)] relative"
+          >
+            {/* Enhanced shadow effect */}
+            <div className="absolute inset-0 rounded-lg shadow-[0_0_25px_rgba(0,0,0,0.15)] -z-10"></div>
+            
+            <h2 className="text-3xl font-bold mb-8 text-center relative">
+              <span className="font-cinzel text-primary relative">
+                BOOK
+                <span 
+                  className="absolute bottom-0 left-1 h-1 bg-secondary"
+                  style={{ 
+                    width: 'calc(100% - 0.5rem)',
+                    transform: 'translateY(4px)'
+                  }}
+                ></span>
+              </span>{' '}
+              <span className="font-cinzel text-tertiary">APPOINTMENT</span>
+            </h2>
+            
+            <div className="space-y-6">
+              {/* First row - Patient Name, Referred by, Service Needed */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <h3 className="text-sm font-medium mb-2 font-urbanist">Patient name</h3>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                    placeholder="Enter patient name"
+                  />
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-2 font-urbanist">Referred by? name / contact</h3>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                    placeholder="Referrer name or contact"
+                  />
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-2 font-urbanist">Service needed</h3>
+                  <select className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist">
+                    <option value="">Select a service</option>
+                    <option value="consultation">Consultation</option>
+                    <option value="scan">Scan</option>
+                    <option value="lab-test">Lab Test</option>
+                    <option value="surgery">Surgery</option>
+                  </select>
+                </div>
+              </div>
+              
+              {/* Second row - Phone Number, Symptoms, Choose Date */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <h3 className="text-sm font-medium mb-2 font-urbanist">Phone number</h3>
+                  <input 
+                    type="tel" 
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                    placeholder="XXXXXXXXXX"
+                  />
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-2 font-urbanist">Symptoms</h3>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                    placeholder="Describe symptoms"
+                  />
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-2 font-urbanist">Choose date</h3>
+                  <input 
+                    type="date" 
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                    defaultValue="2025-05-27"
+                  />
+                </div>
+              </div>
+              
+              {/* Submit button */}
+              <div className="pt-4">
+                <button className="w-full md:w-auto mx-auto block bg-primary hover:bg-primary/90 text-white py-3 px-12 rounded-md font-medium transition-colors font-urbanist">
+                  SUBMIT NOW
+                </button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
