@@ -4,8 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const defaultSchedules = [
   {
     doctorId: 1,
-    name: "Dr. Namala2 Angella",
-    specialty: "Consultant Obstetrician/ Gynecologist - UG, MBCHB, M.MED, MBA, F-RAEI, FMAS",
+    name: "Dr. Namala Angella",
+    specialty: "Consultant Obstetrician / Gynecologist - UG, MBCHB, M.MED, MBA, F-RAEI, FMAS, Member ECSACOG, Member AOGU & Uganda Medical Association",
     availableSlots: [
       { date: "2024-03-20", time: "09:00" },
       { date: "2024-03-20", time: "10:00" },
