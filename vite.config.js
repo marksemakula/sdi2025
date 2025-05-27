@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    chunkSizeWarningLimit: 1500, // Increased limit
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -12,8 +12,8 @@ export default defineConfig({
           vendor: ['redux', 'react-redux', '@reduxjs/toolkit'],
           framer: ['framer-motion'],
           icons: ['react-icons'],
-          charts: ['recharts'], // If you use charts
-          utils: ['date-fns', 'axios'], // Common utilities
+          charts: ['recharts'],
+          utils: ['date-fns', 'axios'],
         },
       },
     },
