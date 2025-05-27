@@ -7,10 +7,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-[1.8fr_1fr_1fr] gap-8">
           {/* Contact Column - More space */}
           <div className="flex items-start">
-            {/* Crisp logo without any filters */}
+            {/* Logo increased by 35% (from 120px to 162px) */}
             <div className="flex-shrink-0 mr-4" style={{
-              width: '120px',
-              height: '120px'
+              width: '162px', // 120px + 35%
+              height: '162px'  // 120px + 35%
             }}>
               <img 
                 src="/images/SDI_LogoF.png" 
@@ -19,7 +19,7 @@ const Footer = () => {
               />
             </div>
 
-            <div className="min-w-[240px]">
+            <div className="min-w-[240px] self-center">
               <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
               <div className="space-y-2">
                 <p className="flex items-center"><FaPhone className="mr-2" /> +256702652046 / +256784004979</p>
@@ -35,7 +35,7 @@ const Footer = () => {
           </div>
           
           {/* Quick Links Column - Reduced width */}
-          <div className="md:pl-4">
+          <div className="md:pl-4 self-center">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><a href="#/referral" className="hover:text-yellow-300 block">Make a Referral</a></li>
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
           
           {/* About Column - Reduced width */}
-          <div className="md:pl-4">
+          <div className="md:pl-4 self-center">
             <h3 className="text-lg font-semibold mb-4">About SDI</h3>
             <p className="text-sm">
               Specialist Doctors International provides world-class medical care
