@@ -58,7 +58,7 @@ const BlogManagement = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm();
     
@@ -67,29 +67,40 @@ const BlogManagement = () => {
       return;
     }
 
-    if (isEditing) {
-      // Corrected dispatch format for updateBlogPost
-      dispatch(updateBlogPost({
-        id: currentPost.id,
-        updates: {
-          title: formData.title,
-          excerpt: formData.excerpt,
-          category: formData.category,
-          image: formData.image,
-          content: formData.content,
-          date: formData.date
-        }
-      }));
-      setSuccessMessage('Blog post updated successfully!');
-    } else {
-      dispatch(addBlogPost({
-        ...formData,
-        id: Date.now().toString()
-      }));
-      setSuccessMessage('Blog post created successfully!');
+    try {
+      if (isEditing) {
+        await dispatch(
+          updateBlogPost({
+            id: currentPost.id,
+            updates: {
+              title: formData.title,
+              excerpt: formData.excerpt,
+              category: formData.category,
+              image: formData.image,
+              content: formData.content,
+              date: formData.date
+            }
+          })
+        ).unwrap();
+        setSuccessMessage('Blog post updated successfully!');
+      } else {
+        await dispatch(
+          addBlogPost({
+            title: formData.title,
+            excerpt: formData.excerpt,
+            category: formData.category,
+            image: formData.image,
+            content: formData.content,
+            date: formData.date
+          })
+        ).unwrap();
+        setSuccessMessage('Blog post created successfully!');
+      }
+      setShowSuccessModal(true);
+      handleReset();
+    } catch (error) {
+      console.error('Operation failed:', error);
     }
-    setShowSuccessModal(true);
-    handleReset();
   };
 
   const handleReset = () => {
@@ -106,24 +117,26 @@ const BlogManagement = () => {
     setFormErrors({});
   };
 
-  const handleDeletePost = (postId) => {
+  const handleDeletePost = async (postId) => {
     if (window.confirm('Are you sure you want to delete this blog post? This action cannot be undone.')) {
-      dispatch(deleteBlogPost(postId));
-      setSuccessMessage('Blog post deleted successfully!');
-      setShowSuccessModal(true);
+      try {
+        await dispatch(deleteBlogPost(postId)).unwrap();
+        setSuccessMessage('Blog post deleted successfully!');
+        setShowSuccessModal(true);
+      } catch (error) {
+        console.error('Delete failed:', error);
+      }
     }
   };
 
   return (
     <div className="space-y-6">
-      {/* Success Modal */}
       <SuccessModal 
         isOpen={showSuccessModal}
         message={successMessage}
         onClose={() => setShowSuccessModal(false)}
       />
 
-      {/* Error Message */}
       {error && (
         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
           <div className="flex items-center">
@@ -133,7 +146,6 @@ const BlogManagement = () => {
         </div>
       )}
 
-      {/* Create/Edit Post Form */}
       <div className="bg-white p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-4 text-tertiary">
           {isEditing ? 'Edit Blog Post' : 'Create New Blog Post'}
@@ -307,7 +319,6 @@ const BlogManagement = () => {
         </form>
       </div>
 
-      {/* Blog Posts List */}
       <div className="bg-white p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-4 text-tertiary">Blog Posts</h2>
         {posts.length === 0 ? (

@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-// Helper function for consistent date formatting
-const formatDate = (dateString = null) => {
-  const date = dateString ? new Date(dateString) : new Date();
+// Simplified date formatting
+const getCurrentDate = () => {
+  const now = new Date();
   return {
-    iso: date.toISOString(),
-    formatted: date.toLocaleDateString('en-US', {
+    iso: now.toISOString(),
+    formatted: now.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -14,23 +14,12 @@ const formatDate = (dateString = null) => {
   };
 };
 
-// Enhanced localStorage operations with error handling
-const localStorageOperations = {
-  get: (key) => {
-    try {
-      const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : null;
-    } catch (error) {
-      console.error(`Error reading ${key} from localStorage:`, error);
-      return null;
-    }
-  },
-  set: (key, value) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error(`Error writing ${key} to localStorage:`, error);
-    }
+// Robust localStorage handling
+const persistPosts = (posts) => {
+  try {
+    localStorage.setItem('blogPosts', JSON.stringify(posts));
+  } catch (error) {
+    console.error('Failed to persist posts:', error);
   }
 };
 
@@ -39,51 +28,22 @@ const blogSlice = createSlice({
   initialState: {
     posts: [],
     loading: false,
-    error: null,
-    lastUpdated: null
+    error: null
   },
   reducers: {
-    // Fetch operations
-    fetchBlogPostsStart(state) {
-      state.loading = true;
-      state.error = null;
-    },
-    fetchBlogPostsSuccess(state, action) {
-      state.posts = action.payload;
-      state.loading = false;
-      state.lastUpdated = new Date().toISOString();
-    },
-    fetchBlogPostsFailure(state, action) {
-      state.error = action.payload;
-      state.loading = false;
-    },
-
-    // CRUD operations
+    // Simplified CRUD operations
     addBlogPost: {
       reducer(state, action) {
-        try {
-          const { payload } = action;
-          const { date } = formatDate();
-          
-          const newPost = {
-            id: uuidv4(),
-            title: payload.title,
-            excerpt: payload.excerpt,
-            category: payload.category || 'General',
-            image: payload.image || '/default-blog-image.jpg',
-            content: payload.content || '',
-            date: payload.date || date.formatted,
-            createdAt: date.iso,
-            updatedAt: date.iso
-          };
-
-          state.posts.unshift(newPost);
-          state.lastUpdated = date.iso;
-          localStorageOperations.set('blogPosts', state.posts);
-        } catch (error) {
-          state.error = error.message || 'Failed to add blog post';
-          console.error('Error in addBlogPost:', error);
-        }
+        const { date } = getCurrentDate();
+        const newPost = {
+          id: uuidv4(),
+          ...action.payload,
+          date: action.payload.date || date.formatted,
+          createdAt: date.iso,
+          updatedAt: date.iso
+        };
+        state.posts.unshift(newPost);
+        persistPosts(state.posts);
       },
       prepare(postData) {
         return {
@@ -91,7 +51,7 @@ const blogSlice = createSlice({
             title: postData.title?.trim() || '',
             excerpt: postData.excerpt?.trim() || '',
             category: postData.category || 'General',
-            image: postData.image || '',
+            image: postData.image || '/default-blog-image.jpg',
             content: postData.content || '',
             date: postData.date || ''
           }
@@ -99,33 +59,23 @@ const blogSlice = createSlice({
       }
     },
 
+    // Fixed update operation
     updateBlogPost: {
       reducer(state, action) {
-        try {
-          const { id, updates } = action.payload;
-          const index = state.posts.findIndex(post => post.id === id);
-          
-          if (index === -1) {
-            throw new Error('Post not found');
-          }
-
-          const { date } = formatDate();
-          const updatedPost = {
+        const { id, updates } = action.payload;
+        const index = state.posts.findIndex(post => post.id === id);
+        
+        if (index >= 0) {
+          const { date } = getCurrentDate();
+          state.posts[index] = {
             ...state.posts[index],
             ...updates,
-            updatedAt: date.iso
+            updatedAt: date.iso,
+            // Preserve immutable fields
+            id: state.posts[index].id,
+            createdAt: state.posts[index].createdAt
           };
-
-          // Preserve created date and ID
-          updatedPost.id = state.posts[index].id;
-          updatedPost.createdAt = state.posts[index].createdAt;
-
-          state.posts[index] = updatedPost;
-          state.lastUpdated = date.iso;
-          localStorageOperations.set('blogPosts', state.posts);
-        } catch (error) {
-          state.error = error.message || 'Failed to update blog post';
-          console.error('Error in updateBlogPost:', error);
+          persistPosts(state.posts);
         }
       },
       prepare(id, updates) {
@@ -146,90 +96,56 @@ const blogSlice = createSlice({
     },
 
     deleteBlogPost(state, action) {
-      try {
-        const initialLength = state.posts.length;
-        state.posts = state.posts.filter(post => post.id !== action.payload);
-        
-        if (initialLength === state.posts.length) {
-          throw new Error('Post not found');
-        }
-
-        const { date } = formatDate();
-        state.lastUpdated = date.iso;
-        localStorageOperations.set('blogPosts', state.posts);
-      } catch (error) {
-        state.error = error.message || 'Failed to delete blog post';
-        console.error('Error in deleteBlogPost:', error);
-      }
+      state.posts = state.posts.filter(post => post.id !== action.payload);
+      persistPosts(state.posts);
     },
 
     // Initialization
-    setInitialBlogPosts(state, action) {
-      try {
-        if (!Array.isArray(action.payload)) return;
-
-        const processedPosts = action.payload.map(post => {
-          const { date } = formatDate(post.createdAt || post.date);
-          
-          return {
-            id: post.id || uuidv4(),
-            title: post.title || 'Untitled Post',
-            excerpt: post.excerpt || '',
-            category: post.category || 'General',
-            image: post.image || '/default-blog-image.jpg',
-            content: post.content || '',
-            date: post.date || date.formatted,
-            createdAt: post.createdAt || date.iso,
-            updatedAt: post.updatedAt || date.iso
-          };
-        });
-
-        state.posts = processedPosts;
-        state.lastUpdated = new Date().toISOString();
-      } catch (error) {
-        state.error = error.message || 'Failed to initialize blog posts';
-        console.error('Error in setInitialBlogPosts:', error);
+    initializePosts(state, action) {
+      if (Array.isArray(action.payload)) {
+        state.posts = action.payload.map(post => ({
+          id: post.id || uuidv4(),
+          title: post.title || 'Untitled Post',
+          excerpt: post.excerpt || '',
+          category: post.category || 'General',
+          image: post.image || '/default-blog-image.jpg',
+          content: post.content || '',
+          date: post.date || getCurrentDate().formatted,
+          createdAt: post.createdAt || getCurrentDate().iso,
+          updatedAt: post.updatedAt || getCurrentDate().iso
+        }));
       }
     },
 
     // Error handling
-    clearBlogError(state) {
+    setError(state, action) {
+      state.error = action.payload;
+    },
+    clearError(state) {
       state.error = null;
     }
   }
 });
 
-// Enhanced loader with validation
+// Load posts with validation
 export const loadBlogPosts = () => {
-  const savedPosts = localStorageOperations.get('blogPosts');
-  
-  if (!savedPosts || !Array.isArray(savedPosts)) {
+  try {
+    const saved = localStorage.getItem('blogPosts');
+    const parsed = saved ? JSON.parse(saved) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.error('Failed to load posts:', error);
     return [];
   }
-
-  // Validate and clean loaded data
-  return savedPosts.map(post => ({
-    id: typeof post.id === 'string' ? post.id : uuidv4(),
-    title: typeof post.title === 'string' ? post.title : 'Untitled Post',
-    excerpt: typeof post.excerpt === 'string' ? post.excerpt : '',
-    category: typeof post.category === 'string' ? post.category : 'General',
-    image: typeof post.image === 'string' ? post.image : '/default-blog-image.jpg',
-    content: typeof post.content === 'string' ? post.content : '',
-    date: typeof post.date === 'string' ? post.date : formatDate().formatted,
-    createdAt: typeof post.createdAt === 'string' ? post.createdAt : formatDate().iso,
-    updatedAt: typeof post.updatedAt === 'string' ? post.updatedAt : formatDate().iso
-  }));
 };
 
-export const {
-  fetchBlogPostsStart,
-  fetchBlogPostsSuccess,
-  fetchBlogPostsFailure,
-  addBlogPost,
-  updateBlogPost,
+export const { 
+  addBlogPost, 
+  updateBlogPost, 
   deleteBlogPost,
-  setInitialBlogPosts,
-  clearBlogError
+  initializePosts,
+  setError,
+  clearError
 } = blogSlice.actions;
 
 export default blogSlice.reducer;
