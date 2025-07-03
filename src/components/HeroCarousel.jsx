@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
-  '/images/Medical/File 1.jpg',
   '/images/Medical/File 2.jpg',
   '/images/Medical/File 3.jpg',
   '/images/Medical/File 4.jpg',
@@ -20,10 +19,8 @@ const images = [
   '/images/Medical/File 16.jpg',
   '/images/Medical/File 17.jpg',
   '/images/Medical/File 18.jpg',
-  '/images/Medical/File 19.jpg',
   '/images/Medical/File 20.jpg',
   '/images/Medical/File 21.jpg',
-  '/images/Medical/File 22.jpg',
   '/images/Medical/File 23.jpg',
   '/images/Medical/File 24.jpg',
   '/images/Medical/File 25.jpg',
@@ -55,14 +52,11 @@ const images = [
   '/images/Medical/File 51.jpg',
   '/images/Medical/File 52.jpg',
   '/images/Medical/File 53.jpg',
-  '/images/Medical/File 54.jpg',
-  '/images/Medical/File 55.jpg',
   '/images/Medical/File 56.jpg',
   '/images/Medical/File 57.jpg',
   '/images/Medical/File 58.jpg',
   '/images/Medical/File 59.jpg',
   '/images/Medical/File 60.jpg',
-  '/images/Medical/File 61.jpg',
   '/images/Medical/File 62.jpg',
   '/images/Medical/File 63.jpg',
   // Add more images as needed

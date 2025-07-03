@@ -9,8 +9,8 @@ const Footer = () => {
           <div className="flex items-start">
             {/* Logo increased by 35% (from 120px to 162px) */}
             <div className="flex-shrink-0 mr-4" style={{
-              width: '162px', // 120px + 35%
-              height: '162px'  // 120px + 35%
+              width: '162px',
+              height: '162px'
             }}>
               <img 
                 src="/images/SDI_LogoF.png" 
@@ -55,8 +55,17 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-8 pt-8 border-t border-white/10 text-center">
+        <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
           <p>&copy; {new Date().getFullYear()} Specialist Doctors International. All rights reserved.</p>
+          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+            <span className="text-white/80 text-sm">Powered by</span>
+            <img 
+              src="/images/logo.png" 
+              alt="Inzozi Logo" 
+              className="h-16 w-auto brightness-0 invert"
+              style={{ maxHeight: '64px' }}
+            />
+          </div>
         </div>
       </div>
     </footer>
