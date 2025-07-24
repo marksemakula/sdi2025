@@ -14,7 +14,6 @@ const images = [
   '/images/Medical/File 11.jpg',
   '/images/Medical/File 12.jpg',
   '/images/Medical/File 13.jpg',
-  '/images/Medical/File 14.jpg',
   '/images/Medical/File 15.jpg',
   '/images/Medical/File 16.jpg',
   '/images/Medical/File 17.jpg',

@@ -8,7 +8,6 @@ const Layout = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log('Layout component mounted');
     // Scroll to top when path changes
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -24,12 +23,14 @@ const Layout = ({ children }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="flex-grow mt-16 md:mt-16" // Added responsive margin-top
+        className="flex-grow mt-16 md:mt-16"
       >
         <ErrorBoundary>
           {children}
         </ErrorBoundary>
       </motion.main>
+      
+      {/* New footer with gray background */}
       <Footer />
     </div>
   );
