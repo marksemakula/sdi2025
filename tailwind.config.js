@@ -15,6 +15,7 @@ export default {
         primary: '#74C365',
         secondary: '#FF5F1F',
         tertiary: '#0F52BA',
+        lightgray: '#ECECEC', // Added light gray color
       },
       borderColor: {
         DEFAULT: '#e5e7eb',
@@ -28,6 +29,17 @@ export default {
       screens: {
         'xs': '480px',
       },
+      // ADDED: Animation keyframes
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      },
+      // ADDED: Animation classes
+      animation: {
+        scroll: 'scroll 30s linear infinite',
+      }
     },
   },
   plugins: [],

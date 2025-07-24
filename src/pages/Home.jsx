@@ -283,6 +283,54 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Partners Carousel Section */}
+      <section className="py-16" style={{ backgroundColor: '#ECECEC' }}>
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Health Partners</h2>
+          
+          {/* Define partners array outside of JSX */}
+          {(() => {
+            const partners = [
+              { name: 'WHO', logo: '/images/partners/who.png' },
+              { name: 'Rotary', logo: '/images/partners/rotary.png' },
+              { name: 'GoU', logo: '/images/partners/gou.png' },
+              { name: 'Liberty', logo: '/images/partners/liberty.jpg' },
+              { name: 'ACTION IN AFRICA', logo: '/images/partners/action-africa.png' },
+              { name: 'Busoga Kingdom', logo: '/images/partners/busoga.png' },
+              { name: 'SheisAI', logo: '/images/partners/sheisai.png' },
+              { name: 'Winrise', logo: '/images/partners/winrise.png' },
+              { name: 'UAP', logo: '/images/partners/uap.png' },
+              { name: 'JUBILEE', logo: '/images/partners/jubilee.png' },
+              { name: 'AAR', logo: '/images/partners/aar.png' },
+            ];
+            
+            return (
+              <div className="relative overflow-hidden">
+                <div 
+                  className="flex w-max animate-scroll"
+                  onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
+                  onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
+                >
+                  {/* Original partners + duplicated for continuous scroll */}
+                  {[...partners, ...partners].map((partner, index) => (
+                    <div 
+                      key={index} 
+                      className="flex-shrink-0 mx-4 bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+                    >
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name}
+                        className="h-16 w-auto object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      </section>
     </div>
   );
 };

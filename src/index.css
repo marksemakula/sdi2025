@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Optimized font imports */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -23,6 +23,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
+    background-color: #ffffff;
   }
 
   #root {
@@ -61,6 +62,21 @@
     --tw-ring-color: transparent !important;
   }
 
+  /* ADDED: Animation keyframes */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ADDED: Partner logo hover effect */
+  .partner-logo img {
+    filter: grayscale(100%) brightness(0.2);
+    transition: filter 0.3s ease;
+  }
+  .partner-logo:hover img {
+    filter: grayscale(0) brightness(1);
+  }
+  
   /* Cinzel thin with custom underline */
   .cinzel-thin {
     font-family: 'Cinzel', serif;
@@ -114,5 +130,10 @@
   .cinzel-thin {
     font-family: 'Cinzel', serif;
     font-weight: 100;
+  }
+  
+  /* ADDED: Animation class */
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
   }
 }
