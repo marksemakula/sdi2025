@@ -1,6 +1,6 @@
 /* Optimized font imports */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@100;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap'); /* Changed to Marcellus */
 
 @tailwind base;
 @tailwind components;
@@ -14,7 +14,7 @@
   }
 
   html {
-    font-family: 'Urbanist', system-ui, sans-serif;
+    font-family: 'Marcellus', serif; /* Changed to Marcellus */
   }
 
   body {
@@ -51,7 +51,7 @@
   /* Base styles */
   * {
     outline: none !important;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Marcellus', serif; /* Changed to Marcellus */
   }
 
   hr, .divider {
@@ -117,11 +117,6 @@
 }
 
 @layer components {
-  /* Ensures all text defaults to Urbanist */
-  body * {
-    font-family: 'Urbanist', sans-serif;
-  }
-  
   /* Explicit Cinzel classes */
   .cinzel-regular {
     font-family: 'Cinzel', serif;
@@ -130,6 +125,11 @@
   .cinzel-thin {
     font-family: 'Cinzel', serif;
     font-weight: 100;
+  }
+  
+  /* Marcellus class */
+  .font-marcellus {
+    font-family: 'Marcellus', serif;
   }
   
   /* ADDED: Animation class */

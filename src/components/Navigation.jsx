@@ -39,7 +39,7 @@ const Navigation = () => {
                 alt="SDI Logo" 
                 className="h-8 w-auto mr-2" 
               />
-              <span className="text-xl font-bold text-tertiary">SDI</span>
+              <span className="text-xl font-bold text-tertiary font-marcellus">SDI</span>
             </div>
           </Link>
           
@@ -49,7 +49,7 @@ const Navigation = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium font-marcellus
                   ${location.pathname === link.to 
                     ? 'text-primary' 
                     : 'text-gray-600 hover:text-secondary'}`}
@@ -92,7 +92,7 @@ const Navigation = () => {
                 key={link.to}
                 to={link.to}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium
+                className={`flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium font-marcellus
                   ${location.pathname === link.to 
                     ? 'bg-primary-50 text-primary' 
                     : 'text-gray-600 hover:bg-gray-50 hover:text-secondary'}`}

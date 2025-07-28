@@ -47,23 +47,25 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="text-white max-w-2xl"
             >
-              <h1 className="text-5xl font-bold mb-6 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]">
+              {/* Added font-marcellus to heading and description */}
+              <h1 className="text-5xl font-bold mb-6 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)] font-marcellus">
                 Because we Care
               </h1>
-              <p className="text-xl mb-8 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]">
+              <p className="text-xl mb-8 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)] font-marcellus">
                 Access specialized healthcare services from leading medical professionals
                 at Specialist Doctors International.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
+                {/* Added font-marcellus to buttons */}
                 <a 
                   href="https://www.specialistdoctors-international.org/referral" 
-                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)]"
+                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] font-marcellus"
                 >
                   Make a Referral
                 </a>
                 <a 
                   href="https://www.specialistdoctors-international.org/telemedicine"
-                  className="bg-white hover:bg-gray-100 text-tertiary px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.1)]"
+                  className="bg-white hover:bg-gray-100 text-tertiary px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.1)] font-marcellus"
                 >
                   Virtual Consultation
                 </a>
