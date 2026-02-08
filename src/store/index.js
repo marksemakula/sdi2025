@@ -19,7 +19,7 @@ const getLocalStorageData = (key, defaultValue) => {
 const preloadedState = {
   referral: {
     referrals: getLocalStorageData('referrals', []),
-    schedules: getLocalStorageData('schedules', referralReducer(undefined, {}).schedules)
+    schedules: referralReducer(undefined, {}).schedules // Always use fresh generated schedules
   },
   careers: {
     jobs: getLocalStorageData('careersJobs', [

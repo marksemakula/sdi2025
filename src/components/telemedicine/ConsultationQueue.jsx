@@ -37,9 +37,9 @@ const ConsultationQueue = ({ canJoin, onJoin }) => {
         <div className="p-4 bg-tertiary/10 rounded-lg">
           <h4 className="font-medium text-tertiary mb-2">Available Doctors</h4>
           <ul className="text-sm text-gray-600 space-y-2">
-            <li>• Dr. Sarah Johnson - Cardiologist</li>
-            <li>• Dr. Michael Chen - General Medicine</li>
-            <li>• Dr. Emily Brown - Pediatrician</li>
+            <li>• Dr. Namala Angella - Consultant Obs/Gyn</li>
+            <li>• Dr. Nuwamanya Lilian - GP</li>
+            <li>• Dr. Maseruka Robert - Consultant Surgeon</li>
           </ul>
         </div>
 

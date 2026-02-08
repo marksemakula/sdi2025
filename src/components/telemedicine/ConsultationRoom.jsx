@@ -45,8 +45,8 @@ const ConsultationRoom = ({ onEnd }) => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-white text-center">
                   <FaVideo className="text-6xl mb-4 mx-auto" />
-                  <h3 className="text-xl">Dr. Sarah Johnson</h3>
-                  <p className="text-gray-400">Cardiologist</p>
+                  <h3 className="text-xl">Dr. Namala Angella</h3>
+                  <p className="text-gray-400">Consultant Obs/Gyn</p>
                 </div>
               </div>
 
