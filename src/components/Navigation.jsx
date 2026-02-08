@@ -15,6 +15,9 @@ const Navigation = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Only use transparent navbar on home page
+  const isHomePage = location.pathname === '/';
 
   // Handle scroll effect
   useEffect(() => {
@@ -24,6 +27,9 @@ const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  // Use transparent style only on home page when not scrolled
+  const useTransparentStyle = isHomePage && !isScrolled;
 
   const navLinks = [
     { to: '/', label: 'Home', icon: FaStethoscope },
@@ -40,9 +46,9 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-        : 'bg-transparent'
+      useTransparentStyle 
+        ? 'bg-transparent' 
+        : 'bg-white/95 backdrop-blur-md shadow-lg'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-18 py-3">
@@ -59,18 +65,18 @@ const Navigation = () => {
               />
               <div className="hidden sm:block">
                 <span className={`text-xl font-bold font-display tracking-tight transition-colors duration-300 ${
-                  isScrolled ? 'text-tertiary' : 'text-white'
+                  useTransparentStyle ? 'text-white' : 'text-tertiary'
                 }`}>
                   Specialist Doctors
                 </span>
                 <span className={`block text-xs font-body -mt-1 transition-colors duration-300 ${
-                  isScrolled ? 'text-gray-500' : 'text-white/80'
+                  useTransparentStyle ? 'text-white/80' : 'text-gray-500'
                 }`}>
                   International
                 </span>
               </div>
               <span className={`sm:hidden text-xl font-bold font-display transition-colors duration-300 ${
-                isScrolled ? 'text-tertiary' : 'text-white'
+                useTransparentStyle ? 'text-white' : 'text-tertiary'
               }`}>
                 SDI
               </span>
@@ -93,13 +99,13 @@ const Navigation = () => {
                   key={link.to}
                   to={link.to}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    isScrolled
+                    useTransparentStyle
                       ? location.pathname === link.to
-                        ? 'text-primary bg-primary/10'
-                        : 'text-gray-600 hover:text-primary hover:bg-primary/5'
-                      : location.pathname === link.to
                         ? 'text-white bg-white/20'
                         : 'text-white/90 hover:text-white hover:bg-white/10'
+                      : location.pathname === link.to
+                        ? 'text-primary bg-primary/10'
+                        : 'text-gray-600 hover:text-primary hover:bg-primary/5'
                   }`}
                 >
                   <link.icon className="h-4 w-4" />
@@ -123,7 +129,7 @@ const Navigation = () => {
               whileTap={{ scale: 0.95 }}
               onClick={toggleMobileMenu}
               className={`p-2 rounded-lg transition-colors duration-300 ${
-                isScrolled ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+                useTransparentStyle ? 'text-white hover:bg-white/10' : 'text-gray-600 hover:bg-gray-100'
               }`}
               aria-label="Toggle menu"
             >

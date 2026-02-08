@@ -69,7 +69,7 @@ const preloadedState = {
         title: 'The Silent Flood: Confronting the Global Scourge of Postpartum Haemorrhage',
         excerpt: 'Postpartum haemorrhage remains the leading direct cause of maternal mortality worldwide. Dr. Nuwamanya Lilian explores this critical health emergency and the path to prevention.',
         category: 'Maternal Health',
-        image: '/images/staff/Dr.Nuwamanya-Lilian.jpg',
+        image: '/images/Dr.Nuwamanya-Lilian.jpg',
         content: `Within the profound journey of childbirth, a silent and ferocious emergency lurks, capable of extinguishing a mother's light in the very moment she brings forth new life. Postpartum haemorrhage (PPH)—defined as a blood loss of 500 ml or more within 24 hours of birth—remains the leading direct cause of maternal mortality worldwide. It is a condition that epitomises the stark inequities in global healthcare, where geography and resource allocation often determine life or death.
 
 ## The Stark Numerical Reality
