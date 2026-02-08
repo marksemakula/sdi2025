@@ -31,7 +31,7 @@ const Navigation = () => {
     { to: '/careers', label: 'Careers', icon: FaUserMd },
     { to: '/telemedicine', label: 'Telemedicine', icon: FaVideo },
     { to: '/blog', label: 'Blog', icon: FaBlog },
-    { to: '/admin', label: 'Admin', icon: FaLock },
+    { to: '/donate', label: 'Donate', icon: FaStethoscope, isDonate: true },
   ];
 
   const toggleMobileMenu = () => {
@@ -80,22 +80,32 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  isScrolled
-                    ? location.pathname === link.to
-                      ? 'text-primary bg-primary/10'
-                      : 'text-gray-600 hover:text-primary hover:bg-primary/5'
-                    : location.pathname === link.to
-                      ? 'text-white bg-white/20'
-                      : 'text-white/90 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                <link.icon className="h-4 w-4" />
-                <span>{link.label}</span>
-              </Link>
+              link.isDonate ? (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="ml-2 btn-secondary text-sm py-2 px-5"
+                >
+                  Donate
+                </Link>
+              ) : (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    isScrolled
+                      ? location.pathname === link.to
+                        ? 'text-primary bg-primary/10'
+                        : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                      : location.pathname === link.to
+                        ? 'text-white bg-white/20'
+                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  <link.icon className="h-4 w-4" />
+                  <span>{link.label}</span>
+                </Link>
+              )
             ))}
             
             {/* CTA Button */}
@@ -139,19 +149,30 @@ const Navigation = () => {
           >
             <div className="px-4 py-4 space-y-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium font-body
-                    transition-all duration-200
-                    ${location.pathname === link.to 
-                      ? 'bg-primary/10 text-primary' 
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-tertiary'}`}
-                >
-                  <link.icon className="h-5 w-5" />
-                  <span>{link.label}</span>
-                </Link>
+                link.isDonate ? (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-center space-x-2 px-4 py-3 rounded-xl text-base font-medium btn-secondary"
+                  >
+                    <span>Donate</span>
+                  </Link>
+                ) : (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium font-body
+                      transition-all duration-200
+                      ${location.pathname === link.to 
+                        ? 'bg-primary/10 text-primary' 
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-tertiary'}`}
+                  >
+                    <link.icon className="h-5 w-5" />
+                    <span>{link.label}</span>
+                  </Link>
+                )
               ))}
               
               {/* Mobile CTA */}
