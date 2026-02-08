@@ -42,7 +42,7 @@ const Navigation = () => {
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-        : 'bg-white shadow-md'
+        : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-18 py-3">
@@ -58,14 +58,20 @@ const Navigation = () => {
                 className="h-10 w-auto mr-3 transition-transform group-hover:scale-105" 
               />
               <div className="hidden sm:block">
-                <span className="text-xl font-bold text-tertiary font-display tracking-tight">
+                <span className={`text-xl font-bold font-display tracking-tight transition-colors duration-300 ${
+                  isScrolled ? 'text-tertiary' : 'text-white'
+                }`}>
                   Specialist Doctors
                 </span>
-                <span className="block text-xs text-gray-500 font-body -mt-1">
+                <span className={`block text-xs font-body -mt-1 transition-colors duration-300 ${
+                  isScrolled ? 'text-gray-500' : 'text-white/80'
+                }`}>
                   International
                 </span>
               </div>
-              <span className="sm:hidden text-xl font-bold text-tertiary font-display">
+              <span className={`sm:hidden text-xl font-bold font-display transition-colors duration-300 ${
+                isScrolled ? 'text-tertiary' : 'text-white'
+              }`}>
                 SDI
               </span>
             </motion.div>
@@ -77,7 +83,15 @@ const Navigation = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`nav-link ${location.pathname === link.to ? 'active' : ''}`}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  isScrolled
+                    ? location.pathname === link.to
+                      ? 'text-primary bg-primary/10'
+                      : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                    : location.pathname === link.to
+                      ? 'text-white bg-white/20'
+                      : 'text-white/90 hover:text-white hover:bg-white/10'
+                }`}
               >
                 <link.icon className="h-4 w-4" />
                 <span>{link.label}</span>
@@ -98,7 +112,9 @@ const Navigation = () => {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={toggleMobileMenu}
-              className="icon-btn text-gray-600"
+              className={`p-2 rounded-lg transition-colors duration-300 ${
+                isScrolled ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+              }`}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (

@@ -43,10 +43,10 @@ const Home = () => {
         url="https://www.specialistdoctors-international.org/"
       />
       {/* Hero Section with Carousel */}
-      <section className="relative h-[600px] overflow-hidden">
+      <section className="relative h-[700px] overflow-hidden">
         <HeroCarousel />
         
-        <div className="relative z-10 h-full flex items-center">
+        <div className="relative z-10 h-full flex items-center pt-16">
           <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
