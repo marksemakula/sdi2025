@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight, FaCalendarAlt, FaTag } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Blog = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -59,6 +60,12 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <SEO 
+        title="Maternity & Women's Health Blog | Pregnancy Tips & Antenatal Advice Uganda"
+        description="Expert articles on maternity care, antenatal advice, pregnancy tips, and women's health from leading gynaecologists and obstetricians in Jinja, Uganda. Stay informed about your health journey."
+        keywords="maternity blog Uganda, pregnancy tips Jinja, antenatal advice Uganda, women's health articles, gynaecology news Uganda, obstetrics blog, prenatal care tips"
+        url="https://www.specialistdoctors-international.org/blog"
+      />
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

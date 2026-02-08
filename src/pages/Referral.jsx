@@ -6,6 +6,7 @@ import { generateEmailFile } from '../utils/email';
 import ReferralForm from '../components/referral/ReferralForm';
 import ScheduleViewer from '../components/referral/ScheduleViewer';
 import SuccessModal from '../components/common/SuccessModal';
+import SEO from '../components/SEO';
 
 const Referral = () => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -20,6 +21,12 @@ const Referral = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <SEO 
+        title="Book Antenatal & Maternity Appointment | Gynaecologist Referral in Jinja"
+        description="Book your antenatal care, maternity, gynaecologist or obstetrician appointment at Specialist Doctors International in Jinja, Uganda. Easy referral process for pregnant mothers and women's health consultations."
+        keywords="book antenatal appointment Jinja, maternity referral Uganda, gynaecologist appointment Jinja, obstetrician booking Uganda, pregnancy consultation Jinja, ANC booking Uganda"
+        url="https://www.specialistdoctors-international.org/referral"
+      />
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -4,12 +4,19 @@ import { FaUserMd, FaBriefcase } from 'react-icons/fa';
 import JobListings from '../components/careers/JobListings';
 import ApplicationForm from '../components/careers/ApplicationForm';
 import CurrentOpenings from '../components/careers/CurrentOpenings';
+import SEO from '../components/SEO';
 
 const Careers = () => {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <SEO 
+        title="Medical Careers | Gynaecologist & Obstetrician Jobs in Jinja, Uganda"
+        description="Join Specialist Doctors International in Jinja, Uganda. Career opportunities for gynaecologists, obstetricians, midwives, and maternity care specialists. Apply now to work with leading healthcare professionals."
+        keywords="gynaecologist jobs Uganda, obstetrician careers Jinja, midwife jobs Uganda, maternity nurse jobs Jinja, healthcare careers Uganda, medical jobs Jinja"
+        url="https://www.specialistdoctors-international.org/careers"
+      />
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

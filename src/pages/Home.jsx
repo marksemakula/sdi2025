@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaUserMd, FaHospital, FaAmbulance } from 'react-icons/fa';
 import HeroCarousel from '../components/HeroCarousel';
+import SEO from '../components/SEO';
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -35,6 +36,12 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        title="Best Maternity & Antenatal Care in Jinja, Uganda | Gynaecologist & Obstetrician"
+        description="Specialist Doctors International offers the best maternity care, antenatal services, gynaecologist and obstetrician consultations in Jinja, Uganda. Expert prenatal care, safe deliveries, and comprehensive women's health services. Book your appointment today!"
+        keywords="maternity hospital Jinja, best antenatal care Uganda, gynaecologist near me Jinja, obstetrician Uganda, pregnancy care Jinja, safe delivery Uganda, ANC clinic Jinja, women's health specialist Uganda, prenatal checkup Jinja, fertility clinic Uganda"
+        url="https://www.specialistdoctors-international.org/"
+      />
       {/* Hero Section with Carousel */}
       <section className="relative h-[600px] overflow-hidden">
         <HeroCarousel />

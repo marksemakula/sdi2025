@@ -1,0 +1,31 @@
+# Robots.txt for Specialist Doctors International
+# Best Maternity, Antenatal, Gynaecologist & Obstetrician Services in Jinja, Uganda
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.specialistdoctors-international.org/sitemap.xml
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yahoo! Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Disallow admin pages from indexing
+Disallow: /admin
+
+# Allow images for better SEO
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Crawl delay to be respectful to server
+Crawl-delay: 1

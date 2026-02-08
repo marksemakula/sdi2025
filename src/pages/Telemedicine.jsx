@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import ConsultationRoom from '../components/telemedicine/ConsultationRoom';
 import ConsultationQueue from '../components/telemedicine/ConsultationQueue';
 import PreConsultationForm from '../components/telemedicine/PreConsultationForm';
+import SEO from '../components/SEO';
 
 const Telemedicine = () => {
   const [consultationStarted, setConsultationStarted] = useState(false);
@@ -10,6 +11,12 @@ const Telemedicine = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <SEO 
+        title="Online Gynaecologist & Obstetrician Consultation | Virtual Maternity Care Uganda"
+        description="Consult with expert gynaecologists and obstetricians online from anywhere in Uganda. Virtual antenatal care, pregnancy consultations, and women's health telemedicine services from Specialist Doctors International, Jinja."
+        keywords="online gynaecologist Uganda, virtual obstetrician consultation, telemedicine maternity Uganda, online antenatal consultation Jinja, virtual pregnancy care Uganda, women's health teleconsultation"
+        url="https://www.specialistdoctors-international.org/telemedicine"
+      />
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
