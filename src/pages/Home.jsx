@@ -331,7 +331,7 @@ const Home = () => {
                   {[...partners, ...partners].map((partner, index) => (
                     <div 
                       key={index} 
-                      className="flex-shrink-0 mx-4 bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+                      className="flex-shrink-0 mx-4 p-6"
                     >
                       <img 
                         src={partner.logo} 
