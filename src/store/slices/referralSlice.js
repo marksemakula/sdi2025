@@ -44,13 +44,19 @@ const defaultSchedules = [
   {
     doctorId: 1,
     name: "Dr. Namala Angella",
-    specialty: "Consultant Obstetrician / Gynecologist - UG, MBCHB, M.MED, MBA, F-RAEI, FMAS, Member ECSACOG, Member AOGU & Uganda Medical Association",
+    specialty: "Consultant Obs/Gyn",
     availableSlots: generateWeeklySlots()
   },
   {
     doctorId: 2,
     name: "Dr. Nuwamanya Lilian",
-    specialty: "GP - UG, MBCHB - Internal Medicine",
+    specialty: "GP",
+    availableSlots: generateWeeklySlots()
+  },
+  {
+    doctorId: 3,
+    name: "Dr. Maseruka Robert",
+    specialty: "Consultant Surgeon",
     availableSlots: generateWeeklySlots()
   },
 ];
