@@ -57,7 +57,7 @@ const defaultSchedules = [
 
 const initialState = {
   referrals: JSON.parse(localStorage.getItem('referrals')) || [],
-  schedules: JSON.parse(localStorage.getItem('schedules')) || defaultSchedules,
+  schedules: defaultSchedules, // Always use fresh generated schedules
 };
 
 const referralSlice = createSlice({
