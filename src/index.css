@@ -1,139 +1,30 @@
-/* Optimized font imports */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@100;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap'); /* Changed to Marcellus */
+/* ============================================
+   SPECIALIST DOCTORS INTERNATIONAL
+   Main Entry Point - Corporate Design System
+   ============================================ */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import corporate design system */
+@import './styles/corporate.css';
 
+/* Additional legacy support and overrides */
 @layer base {
-  :root {
-    --primary: #74C365;
-    --secondary: #FF5F1F;
-    --tertiary: #0F52BA;
-  }
-
-  html {
-    font-family: 'Marcellus', serif; /* Changed to Marcellus */
-  }
-
-  body {
-    margin: 0;
-    font-family: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-    background-color: #ffffff;
-  }
-
-  #root {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Cinzel font-face (thin and regular only) */
-  @font-face {
-    font-family: 'Cinzel';
-    font-style: normal;
-    font-weight: 100;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/cinzel/v19/8vIJ7ww63mVu7gtL9W67F05NYJ0.woff2') format('woff2');
-  }
-  @font-face {
-    font-family: 'Cinzel';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/cinzel/v19/8vIJ7ww63mVu7gtL9W67F05NYJ0.woff2') format('woff2');
-  }
-
-  /* Base styles */
+  /* Ensure smooth transitions site-wide */
   * {
-    outline: none !important;
-    font-family: 'Marcellus', serif; /* Changed to Marcellus */
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
   }
 
-  hr, .divider {
-    border-color: transparent !important;
-  }
-
-  [motion] {
-    --tw-ring-color: transparent !important;
-  }
-
-  /* ADDED: Animation keyframes */
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* ADDED: Partner logo hover effect */
-  .partner-logo img {
-    filter: grayscale(100%) brightness(0.2);
-    transition: filter 0.3s ease;
-  }
-  .partner-logo:hover img {
-    filter: grayscale(0) brightness(1);
-  }
-  
-  /* Cinzel thin with custom underline */
-  .cinzel-thin {
-    font-family: 'Cinzel', serif;
-    font-weight: 100;
-    
-    &.with-underline {
-      position: relative;
-      display: inline-block;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0.25rem;
-        bottom: -0.25rem;
-        width: calc(100% - 0.5rem);
-        height: 2px;
-        background-color: var(--secondary);
-      }
-    }
-  }
-
-  /* Additional utilities for footer */
-  .bg-gray-800 {
-    background-color: #2d3748;
-  }
-  .bg-gray-900 {
-    background-color: #1a202c;
-  }
-  .border-gray-800 {
-    border-color: #2d3748;
-  }
-  .hover\:text-primary:hover {
-    color: var(--primary);
-  }
-  .hover\:bg-gray-700:hover {
-    background-color: #4a5568;
+  /* Disable transitions on load */
+  .no-transitions * {
+    transition: none !important;
   }
 }
 
+/* Legacy font support - map old classes to Ubuntu */
 @layer components {
-  /* Explicit Cinzel classes */
-  .cinzel-regular {
-    font-family: 'Cinzel', serif;
-    font-weight: 400;
-  }
-  .cinzel-thin {
-    font-family: 'Cinzel', serif;
-    font-weight: 100;
-  }
-  
-  /* Marcellus class */
-  .font-marcellus {
-    font-family: 'Marcellus', serif;
-  }
-  
-  /* ADDED: Animation class */
-  .animate-scroll {
-    animation: scroll 30s linear infinite;
+  /* These ensure backward compatibility */
+  .font-urbanist {
+    font-family: 'Ubuntu', sans-serif !important;
   }
 }

@@ -54,25 +54,28 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="text-white max-w-2xl"
             >
-              {/* Added font-marcellus to heading and description */}
-              <h1 className="text-5xl font-bold mb-6 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)] font-marcellus">
-                Because we Care
+              <span className="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-body mb-4">
+                🏥 Premier Healthcare in Jinja, Uganda
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-display leading-tight"
+                  style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                Because We Care
               </h1>
-              <p className="text-xl mb-8 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)] font-marcellus">
-                Access specialized healthcare services from leading medical professionals
-                at Specialist Doctors International.
+              <p className="text-lg md:text-xl mb-8 font-body opacity-95 leading-relaxed"
+                 style={{ textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
+                Access specialized maternity, antenatal, and women's healthcare services 
+                from leading gynaecologists and obstetricians.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                {/* Added font-marcellus to buttons */}
                 <a 
-                  href="https://www.specialistdoctors-international.org/referral" 
-                  className="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)] font-marcellus"
+                  href="/referral" 
+                  className="btn-secondary text-center shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
                 >
                   Make a Referral
                 </a>
                 <a 
-                  href="https://www.specialistdoctors-international.org/telemedicine"
-                  className="bg-white hover:bg-gray-100 text-tertiary px-8 py-3 rounded-md font-medium text-center transition-colors [text-shadow:_0_1px_2px_rgba(0,0,0,0.1)] font-marcellus"
+                  href="/telemedicine"
+                  className="btn bg-white/95 hover:bg-white text-tertiary shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
                 >
                   Virtual Consultation
                 </a>
@@ -109,73 +112,69 @@ const Home = () => {
       </section>
 
       {/* Appointment Booking Form */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
+      <section className="section bg-gradient-to-b from-white to-gray-50">
+        <div className="container-corporate">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-white p-8 rounded-lg shadow-[0_0_25px_rgba(0,0,0,0.15)] relative"
+            className="card-elevated p-8 md:p-10"
           >
-            <div className="absolute inset-0 rounded-lg shadow-[0_0_25px_rgba(0,0,0,0.15)] -z-10"></div>
-            
-            <h2 className="text-3xl mb-8 text-center relative">
-              <span className="font-cinzel font-thin text-primary relative">
-                BOOK
-                <span 
-                  className="absolute bottom-0 left-1 h-1 bg-secondary"
-                  style={{ 
-                    width: 'calc(100% - 0.5rem)',
-                    transform: 'translateY(4px)'
-                  }}
-                ></span>
-              </span>{' '}
-              <span className="font-cinzel font-thin text-tertiary">APPOINTMENT</span>
-            </h2>
+            <div className="section-header mb-8">
+              <h2 className="section-title">
+                <span className="text-primary">Book</span>{' '}
+                <span className="text-tertiary">Appointment</span>
+              </h2>
+              <p className="section-subtitle text-base">
+                Schedule your consultation with our specialist doctors today
+              </p>
+            </div>
             
             <form onSubmit={handleSubmit}>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <h3 className="text-sm font-medium mb-2 font-urbanist">Patient name</h3>
+                  <div className="form-group">
+                    <label className="label">Patient Name</label>
                     <input 
                       type="text" 
                       name="patientName"
                       value={formData.patientName}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      className="input"
                       placeholder="Enter patient name"
                       required
                     />
                   </div>
                   
-                  <div>
-                    <h3 className="text-sm font-medium mb-2 font-urbanist">Referred by? name / contact</h3>
+                  <div className="form-group">
+                    <label className="label">Referred By (Optional)</label>
                     <input 
                       type="text"
                       name="referredBy"
                       value={formData.referredBy}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      className="input"
                       placeholder="Referrer name or contact"
                     />
                   </div>
                   
-                  <div>
-                    <h3 className="text-sm font-medium mb-2 font-urbanist">Service needed</h3>
+                  <div className="form-group">
+                    <label className="label">Service Needed</label>
                     <select 
                       name="serviceNeeded"
                       value={formData.serviceNeeded}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      className="select"
                       required
                     >
                       <option value="">Select a service</option>
-                      <option value="Consultation">Consultation</option>
-                      <option value="Scan">Scan</option>
-                      <option value="Lab Test">ANC</option>
-                      <option value="Lab Test">Dental</option>
-                      <option value="Lab Test">Physiotherapy</option>
+                      <option value="Consultation">Specialist Consultation</option>
+                      <option value="Antenatal">Antenatal Care (ANC)</option>
+                      <option value="Maternity">Maternity Services</option>
+                      <option value="Gynaecology">Gynaecology</option>
+                      <option value="Scan">Ultrasound Scan</option>
+                      <option value="Dental">Dental</option>
+                      <option value="Physiotherapy">Physiotherapy</option>
                       <option value="Lab Test">Lab Test</option>
                       <option value="Surgery">Surgery</option>
                     </select>
@@ -183,50 +182,50 @@ const Home = () => {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <h3 className="text-sm font-medium mb-2 font-urbanist">Phone number</h3>
+                  <div className="form-group">
+                    <label className="label">Phone Number</label>
                     <input 
                       type="tel"
                       name="phoneNumber"
                       value={formData.phoneNumber}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
-                      placeholder="XXXXXXXXXX"
+                      className="input"
+                      placeholder="+256 XXX XXX XXX"
                       required
                     />
                   </div>
                   
-                  <div>
-                    <h3 className="text-sm font-medium mb-2 font-urbanist">Symptoms</h3>
+                  <div className="form-group">
+                    <label className="label">Symptoms (Optional)</label>
                     <input
                       type="text"
                       name="symptoms"
                       value={formData.symptoms}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
-                      placeholder="Describe symptoms"
+                      className="input"
+                      placeholder="Describe symptoms briefly"
                     />
                   </div>
                   
-                  <div>
-                    <h3 className="text-sm font-medium mb-2 font-urbanist">Choose date</h3>
+                  <div className="form-group">
+                    <label className="label">Preferred Date</label>
                     <input 
                       type="date" 
                       name="appointmentDate"
                       value={formData.appointmentDate}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent font-urbanist"
+                      className="input"
                       required
                     />
                   </div>
                 </div>
                 
-                <div className="pt-4">
+                <div className="pt-6 text-center">
                   <button 
                     type="submit"
-                    className="w-full md:w-auto mx-auto block bg-primary hover:bg-primary/90 text-white py-3 px-12 rounded-md font-medium transition-colors font-urbanist"
+                    className="btn-primary px-12 py-3.5 text-base"
                   >
-                    SUBMIT NOW
+                    Book Appointment
                   </button>
                 </div>
               </div>
@@ -236,16 +235,21 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            Our Services
-          </motion.h2>
+      <section className="section bg-white">
+        <div className="container-corporate">
+          <div className="section-header">
+            <motion.h2 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="section-title"
+            >
+              Our Services
+            </motion.h2>
+            <p className="section-subtitle">
+              Comprehensive healthcare solutions tailored to your needs
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -272,20 +276,22 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
+                className="card group cursor-pointer"
               >
-                <div className="h-48 overflow-hidden">
+                <div className="h-52 overflow-hidden">
                   <img 
                     src={service.image} 
                     alt={service.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
                 
                 <div className="p-6">
-                  <service.icon className="text-primary text-4xl mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+                    <service.icon className="text-primary text-2xl group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 font-display text-gray-900">{service.title}</h3>
+                  <p className="text-gray-600 font-body leading-relaxed">{service.description}</p>
                 </div>
               </motion.div>
             ))}

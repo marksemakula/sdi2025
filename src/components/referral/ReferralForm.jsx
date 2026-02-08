@@ -32,13 +32,13 @@ const ReferralForm = ({ onSubmit, schedules }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-lg shadow-lg"
+      className="card-elevated p-8"
     >
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-              <FaUser className="mr-2" /> Patient Name
+          <div className="form-group">
+            <label className="label flex items-center">
+              <FaUser className="mr-2 text-primary" /> Patient Name
             </label>
             <input
               type="text"
@@ -46,13 +46,14 @@ const ReferralForm = ({ onSubmit, schedules }) => {
               value={formData.patientName}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="input"
+              placeholder="Enter patient's full name"
             />
           </div>
 
-          <div>
-            <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-              <FaCalendar className="mr-2" /> Date of Birth
+          <div className="form-group">
+            <label className="label flex items-center">
+              <FaCalendar className="mr-2 text-primary" /> Date of Birth
             </label>
             <input
               type="date"
@@ -60,15 +61,15 @@ const ReferralForm = ({ onSubmit, schedules }) => {
               value={formData.dateOfBirth}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="input"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-              <FaUserMd className="mr-2" /> Referring Doctor
+          <div className="form-group">
+            <label className="label flex items-center">
+              <FaUserMd className="mr-2 text-primary" /> Referring Doctor
             </label>
             <input
               type="text"
@@ -76,13 +77,14 @@ const ReferralForm = ({ onSubmit, schedules }) => {
               value={formData.referringDoctor}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="input"
+              placeholder="Doctor's name"
             />
           </div>
 
-          <div>
-            <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-              <FaHospital className="mr-2" /> Institution
+          <div className="form-group">
+            <label className="label flex items-center">
+              <FaHospital className="mr-2 text-primary" /> Institution
             </label>
             <input
               type="text"
@@ -90,14 +92,15 @@ const ReferralForm = ({ onSubmit, schedules }) => {
               value={formData.institution}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="input"
+              placeholder="Hospital or clinic name"
             />
           </div>
         </div>
 
-        <div>
-          <label className="flex items-center text-sm font-medium text-gray-700 mb-1">
-            <FaPhone className="mr-2" /> Contact Number
+        <div className="form-group">
+          <label className="label flex items-center">
+            <FaPhone className="mr-2 text-primary" /> Contact Number
           </label>
           <input
             type="tel"
@@ -105,61 +108,66 @@ const ReferralForm = ({ onSubmit, schedules }) => {
             value={formData.contactNumber}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="input"
+            placeholder="+256 XXX XXX XXX"
           />
         </div>
 
-        <div>
-          <label className="text-sm font-medium text-gray-700 mb-1">Service Requested</label>
+        <div className="form-group">
+          <label className="label">Service Requested</label>
           <select
             name="serviceRequested"
             value={formData.serviceRequested}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="select"
           >
             <option value="">Select a service</option>
-            <option value="cardiology">ANC</option>
-            <option value="neurology">Physiotherapy</option>
-            <option value="neurology">Dental</option>
-            <option value="orthopedics">Maternity</option>
-            <option value="pediatrics">Imaging/Scan</option>
+            <option value="antenatal">Antenatal Care (ANC)</option>
+            <option value="maternity">Maternity Services</option>
+            <option value="gynaecology">Gynaecology Consultation</option>
+            <option value="obstetrics">Obstetrics Care</option>
+            <option value="physiotherapy">Physiotherapy</option>
+            <option value="dental">Dental Services</option>
+            <option value="imaging">Imaging/Ultrasound Scan</option>
+            <option value="laboratory">Laboratory Tests</option>
           </select>
         </div>
 
-        <div>
-          <label className="text-sm font-medium text-gray-700 mb-1">Clinical Information</label>
+        <div className="form-group">
+          <label className="label">Clinical Information</label>
           <textarea
             name="clinicalInfo"
             value={formData.clinicalInfo}
             onChange={handleChange}
             required
             rows="4"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="textarea"
+            placeholder="Please provide relevant clinical history and current symptoms..."
           ></textarea>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="text-sm font-medium text-gray-700 mb-1">Preferred Date</label>
+          <div className="form-group">
+            <label className="label">Preferred Date</label>
             <input
               type="date"
               name="preferredDate"
               value={formData.preferredDate}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="input"
             />
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700 mb-1">Preferred Time</label>
+          <div className="form-group">
+            <label className="label">Preferred Time</label>
             <select
               name="preferredTime"
               value={formData.preferredTime}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="select"
             >
               <option value="">Select time</option>
               <option value="09:00">09:00 AM</option>
@@ -174,7 +182,7 @@ const ReferralForm = ({ onSubmit, schedules }) => {
 
         <button
           type="submit"
-          className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-md transition-colors"
+          className="w-full btn-primary py-3.5 text-base"
         >
           Submit Referral
         </button>

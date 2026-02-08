@@ -10,21 +10,39 @@ const Telemedicine = () => {
   const [preConsultationDone, setPreConsultationDone] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50">
       <SEO 
         title="Online Gynaecologist & Obstetrician Consultation | Virtual Maternity Care Uganda"
         description="Consult with expert gynaecologists and obstetricians online from anywhere in Uganda. Virtual antenatal care, pregnancy consultations, and women's health telemedicine services from Specialist Doctors International, Jinja."
         keywords="online gynaecologist Uganda, virtual obstetrician consultation, telemedicine maternity Uganda, online antenatal consultation Jinja, virtual pregnancy care Uganda, women's health teleconsultation"
         url="https://www.specialistdoctors-international.org/telemedicine"
       />
-      <div className="max-w-7xl mx-auto px-4">
+      
+      {/* Hero Banner */}
+      <div className="bg-gradient-to-r from-primary to-primary-600 py-16 pt-24">
+        <div className="container-corporate text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-body mb-4">
+              🩺 Available 24/7
+            </span>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Virtual Consultation</h1>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              Connect with our specialist doctors from the comfort of your home
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container-corporate py-12 -mt-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h1 className="text-3xl font-bold text-tertiary mb-8">Virtual Consultation</h1>
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {!consultationStarted ? (
               <>

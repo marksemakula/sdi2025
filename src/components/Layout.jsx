@@ -23,14 +23,14 @@ const Layout = ({ children }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="flex-grow mt-16 md:mt-16"
+        className="flex-grow mt-18"
       >
         <ErrorBoundary>
           {children}
         </ErrorBoundary>
       </motion.main>
       
-      {/* New footer with gray background */}
+      {/* Footer with gradient background */}
       <Footer />
     </div>
   );

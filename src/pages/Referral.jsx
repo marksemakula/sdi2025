@@ -20,27 +20,42 @@ const Referral = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50">
       <SEO 
         title="Book Antenatal & Maternity Appointment | Gynaecologist Referral in Jinja"
         description="Book your antenatal care, maternity, gynaecologist or obstetrician appointment at Specialist Doctors International in Jinja, Uganda. Easy referral process for pregnant mothers and women's health consultations."
         keywords="book antenatal appointment Jinja, maternity referral Uganda, gynaecologist appointment Jinja, obstetrician booking Uganda, pregnancy consultation Jinja, ANC booking Uganda"
         url="https://www.specialistdoctors-international.org/referral"
       />
-      <div className="max-w-7xl mx-auto px-4">
+      
+      {/* Hero Banner */}
+      <div className="bg-gradient-to-r from-tertiary to-tertiary-dark py-16 pt-24">
+        <div className="container-corporate text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Patient Referral</h1>
+            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+              Easily refer patients to our specialist doctors for comprehensive care
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container-corporate py-12 -mt-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h1 className="text-3xl font-bold text-tertiary mb-8">Patient Referral</h1>
-          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <ReferralForm onSubmit={handleSubmit} schedules={schedules} />
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-lg h-fit">
+            <div className="card-elevated p-6 h-fit">
               <ScheduleViewer schedules={schedules} />
             </div>
           </div>

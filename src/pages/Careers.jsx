@@ -10,27 +10,39 @@ const Careers = () => {
   const [selectedPosition, setSelectedPosition] = useState(null);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50">
       <SEO 
         title="Medical Careers | Gynaecologist & Obstetrician Jobs in Jinja, Uganda"
         description="Join Specialist Doctors International in Jinja, Uganda. Career opportunities for gynaecologists, obstetricians, midwives, and maternity care specialists. Apply now to work with leading healthcare professionals."
         keywords="gynaecologist jobs Uganda, obstetrician careers Jinja, midwife jobs Uganda, maternity nurse jobs Jinja, healthcare careers Uganda, medical jobs Jinja"
         url="https://www.specialistdoctors-international.org/careers"
       />
-      <div className="max-w-7xl mx-auto px-4">
+      
+      {/* Hero Banner */}
+      <div className="bg-gradient-to-r from-secondary to-secondary-dark py-16 pt-24">
+        <div className="container-corporate text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-body mb-4">
+              💼 Join Our Team
+            </span>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Medical Careers</h1>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              Join our team of dedicated healthcare professionals and make a difference in people's lives
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container-corporate py-12 -mt-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="text-center mb-12">
-            <h1 className="text-3xl font-bold text-tertiary mb-4">Medical Staff Careers</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Join our team of dedicated healthcare professionals at Specialist Doctors International.
-              We offer exceptional opportunities for career growth and development.
-            </p>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               {selectedPosition ? (
