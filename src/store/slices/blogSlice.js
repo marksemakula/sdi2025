@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 // Simplified date formatting
@@ -14,14 +14,47 @@ const getCurrentDate = () => {
   };
 };
 
-// Robust localStorage handling
-const persistPosts = (posts) => {
-  try {
-    localStorage.setItem('blogPosts', JSON.stringify(posts));
-  } catch (error) {
-    console.error('Failed to persist posts:', error);
+// Load blog posts from content folder (CMS-managed files)
+export const fetchBlogPosts = createAsyncThunk(
+  'blog/fetchPosts',
+  async () => {
+    try {
+      // Use Vite's glob import to load all JSON files from content/blog
+      const modules = import.meta.glob('/content/blog/*.json', { eager: true });
+      
+      const posts = Object.entries(modules).map(([path, module]) => {
+        // Extract filename for ID
+        const filename = path.split('/').pop().replace('.json', '');
+        const data = module.default || module;
+        
+        return {
+          id: filename,
+          slug: filename,
+          title: data.title || 'Untitled',
+          date: data.date || '',
+          author: data.author || 'SDI Medical Team',
+          category: data.category || 'General Health',
+          image: data.image || '/images/default-blog.jpg',
+          excerpt: data.excerpt || '',
+          content: data.content || '',
+          published: data.published !== false
+        };
+      });
+
+      // Filter published posts and sort by date (newest first)
+      return posts
+        .filter(post => post.published)
+        .sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB - dateA;
+        });
+    } catch (error) {
+      console.error('Error loading blog posts:', error);
+      return [];
+    }
   }
-};
+);
 
 const blogSlice = createSlice({
   name: 'blog',
@@ -31,119 +64,40 @@ const blogSlice = createSlice({
     error: null
   },
   reducers: {
-    // Simplified CRUD operations
-    addBlogPost: {
-      reducer(state, action) {
-        const { date } = getCurrentDate();
-        const newPost = {
-          id: uuidv4(),
-          ...action.payload,
-          date: action.payload.date || date.formatted,
-          createdAt: date.iso,
-          updatedAt: date.iso
-        };
-        state.posts.unshift(newPost);
-        persistPosts(state.posts);
-      },
-      prepare(postData) {
-        return {
-          payload: {
-            title: postData.title?.trim() || '',
-            excerpt: postData.excerpt?.trim() || '',
-            category: postData.category || 'General',
-            image: postData.image || '/default-blog-image.jpg',
-            content: postData.content || '',
-            date: postData.date || ''
-          }
-        };
-      }
+    // Keep for any local operations
+    setPosts(state, action) {
+      state.posts = action.payload;
     },
-
-    // Fixed update operation
-    updateBlogPost: {
-      reducer(state, action) {
-        const { id, updates } = action.payload;
-        const index = state.posts.findIndex(post => post.id === id);
-        
-        if (index >= 0) {
-          const { date } = getCurrentDate();
-          state.posts[index] = {
-            ...state.posts[index],
-            ...updates,
-            updatedAt: date.iso,
-            // Preserve immutable fields
-            id: state.posts[index].id,
-            createdAt: state.posts[index].createdAt
-          };
-          persistPosts(state.posts);
-        }
-      },
-      prepare(id, updates) {
-        return {
-          payload: {
-            id,
-            updates: {
-              title: updates.title?.trim() || '',
-              excerpt: updates.excerpt?.trim() || '',
-              category: updates.category || 'General',
-              image: updates.image || '',
-              content: updates.content || '',
-              date: updates.date || ''
-            }
-          }
-        };
-      }
+    setLoading(state, action) {
+      state.loading = action.payload;
     },
-
-    deleteBlogPost(state, action) {
-      state.posts = state.posts.filter(post => post.id !== action.payload);
-      persistPosts(state.posts);
-    },
-
-    // Initialization
-    initializePosts(state, action) {
-      if (Array.isArray(action.payload)) {
-        state.posts = action.payload.map(post => ({
-          id: post.id || uuidv4(),
-          title: post.title || 'Untitled Post',
-          excerpt: post.excerpt || '',
-          category: post.category || 'General',
-          image: post.image || '/default-blog-image.jpg',
-          content: post.content || '',
-          date: post.date || getCurrentDate().formatted,
-          createdAt: post.createdAt || getCurrentDate().iso,
-          updatedAt: post.updatedAt || getCurrentDate().iso
-        }));
-      }
-    },
-
-    // Error handling
     setError(state, action) {
       state.error = action.payload;
     },
     clearError(state) {
       state.error = null;
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBlogPosts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchBlogPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.posts = action.payload;
+      })
+      .addCase(fetchBlogPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   }
 });
 
-// Load posts with validation
-export const loadBlogPosts = () => {
-  try {
-    const saved = localStorage.getItem('blogPosts');
-    const parsed = saved ? JSON.parse(saved) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    console.error('Failed to load posts:', error);
-    return [];
-  }
-};
-
 export const { 
-  addBlogPost, 
-  updateBlogPost, 
-  deleteBlogPost,
-  initializePosts,
+  setPosts,
+  setLoading,
   setError,
   clearError
 } = blogSlice.actions;

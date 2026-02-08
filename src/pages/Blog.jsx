@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight, FaCalendarAlt, FaTag } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { fetchBlogPosts } from '../store/slices/blogSlice';
 
 const Blog = () => {
+  const dispatch = useDispatch();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const { posts } = useSelector(state => state.blog);
+  const { posts, loading, error } = useSelector(state => state.blog);
+
+  // Fetch blog posts on mount
+  useEffect(() => {
+    dispatch(fetchBlogPosts());
+  }, [dispatch]);
 
   // Auto-advance carousel
   useEffect(() => {
@@ -38,6 +45,17 @@ const Blog = () => {
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-500">Loading blog posts...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (posts.length === 0) {
     return (
