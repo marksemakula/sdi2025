@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaPhone, FaEnvelope, FaMapMarkerAlt, FaApple, FaGooglePlay } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt, FaApple, FaGooglePlay, FaSlack, FaTiktok, FaDiscord, FaSnapchatGhost, FaYoutube } from 'react-icons/fa';
+import { FaXTwitter, FaThreads } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -25,34 +26,78 @@ const Footer = () => {
             <p className="text-gray-300 text-sm leading-relaxed mt-2">
               Providing world-class medical care through our network of experienced specialists.
             </p>
-            <div className="flex space-x-4 mt-4">
+            <div className="flex flex-wrap gap-3 mt-4">
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 href="#"
                 className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="Slack"
               >
-                <FaFacebook size={20} />
+                <FaSlack size={18} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 href="#"
                 className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="X (Twitter)"
               >
-                <FaTwitter size={20} />
+                <FaXTwitter size={18} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 href="#"
                 className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="Instagram"
               >
-                <FaInstagram size={20} />
+                <FaInstagram size={18} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 href="#"
                 className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="Facebook"
               >
-                <FaLinkedin size={20} />
+                <FaFacebook size={18} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                href="#"
+                className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="TikTok"
+              >
+                <FaTiktok size={18} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                href="#"
+                className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="Discord"
+              >
+                <FaDiscord size={18} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                href="#"
+                className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="Threads"
+              >
+                <FaThreads size={18} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                href="#"
+                className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="Snapchat"
+              >
+                <FaSnapchatGhost size={18} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                href="#"
+                className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="YouTube"
+              >
+                <FaYoutube size={18} />
               </motion.a>
             </div>
           </div>
