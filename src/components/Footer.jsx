@@ -5,22 +5,21 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaPhone, FaEnvelope, Fa
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info with 150% larger logo */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Company Info with logo */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-4">
-              {/* Logo increased by 150% (from h-16 to h-40) */}
+            <div className="flex items-center space-x-5">
               <div className="flex-shrink-0">
                 <img
                   src="/images/SDI_LogoF.png"
                   alt="SDI Logo"
-                  className="h-40 w-auto"
+                  className="h-32 w-auto"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-xl">Specialist Doctors</span>
-                <span className="text-sm text-gray-300">International</span>
+                <span className="font-bold text-2xl leading-tight">Specialist Doctors</span>
+                <span className="text-base text-gray-300 font-normal">International</span>
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mt-2">
@@ -56,33 +55,6 @@ const Footer = () => {
                 <FaLinkedin size={20} />
               </motion.a>
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/referral" className="text-gray-300 hover:text-primary transition-colors duration-300 text-sm">
-                  Make a Referral
-                </Link>
-              </li>
-              <li>
-                <Link to="/careers" className="text-gray-300 hover:text-primary transition-colors duration-300 text-sm">
-                  Career Opportunities
-                </Link>
-              </li>
-              <li>
-                <Link to="/telemedicine" className="text-gray-300 hover:text-primary transition-colors duration-300 text-sm">
-                  Telemedicine Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin" className="text-gray-300 hover:text-primary transition-colors duration-300 text-sm">
-                  Admin Panel
-                </Link>
-              </li>
-            </ul>
           </div>
 
           {/* Contact Info */}
@@ -140,7 +112,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="mt-8 pt-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-300 text-sm">
             © {new Date().getFullYear()} Specialist Doctors International. All rights reserved.
           </p>
