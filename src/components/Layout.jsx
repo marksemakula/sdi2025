@@ -17,13 +17,13 @@ const Layout = ({ children }) => {
       {/* Navigation is now fixed at the top */}
       <Navigation />
       
-      {/* Main content with margin-top to account for fixed navbar */}
+      {/* Main content */}
       <motion.main
         key={location.pathname}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="flex-grow mt-18"
+        className="flex-grow"
       >
         <ErrorBoundary>
           {children}

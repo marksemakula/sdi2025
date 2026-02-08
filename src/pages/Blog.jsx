@@ -59,7 +59,7 @@ const Blog = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 pt-24 pb-12">
       <SEO 
         title="Maternity & Women's Health Blog | Pregnancy Tips & Antenatal Advice Uganda"
         description="Expert articles on maternity care, antenatal advice, pregnancy tips, and women's health from leading gynaecologists and obstetricians in Jinja, Uganda. Stay informed about your health journey."

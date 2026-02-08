@@ -42,8 +42,8 @@ const Home = () => {
         keywords="maternity hospital Jinja, best antenatal care Uganda, gynaecologist near me Jinja, obstetrician Uganda, pregnancy care Jinja, safe delivery Uganda, ANC clinic Jinja, women's health specialist Uganda, prenatal checkup Jinja, fertility clinic Uganda"
         url="https://www.specialistdoctors-international.org/"
       />
-      {/* Hero Section with Carousel */}
-      <section className="relative h-[700px] overflow-hidden">
+      {/* Hero Section with Carousel - starts at top behind navbar */}
+      <section className="relative h-[700px] overflow-hidden -mt-[72px]">
         <HeroCarousel />
         
         <div className="relative z-10 h-full flex items-center pt-16">
