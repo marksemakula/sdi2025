@@ -318,8 +318,16 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Redirect to admin after Netlify Identity login
+      // Explicitly initialise the Identity widget with the canonical site URL.
+      // Without this, the widget auto-detects the URL from window.location, which
+      // can fail when accessed via a non-www alias or a Netlify preview URL,
+      // producing "Failed to load settings from /.netlify/identity".
       if (window.netlifyIdentity) {
+        window.netlifyIdentity.init({
+          APIUrl: 'https://www.specialistdoctors-international.org/.netlify/identity'
+        });
+
+        // Redirect to admin panel after successful login
         window.netlifyIdentity.on("init", user => {
           if (!user) {
             window.netlifyIdentity.on("login", () => {

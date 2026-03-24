@@ -10,7 +10,7 @@ public_folder: "/images/blog"
 logo_url: "/images/SDI_Logo.png"
 
 # Site URL
-site_url: https://specialistdoctors-international.org
+site_url: https://www.specialistdoctors-international.org
 
 # Editorial workflow for draft/review/publish
 publish_mode: editorial_workflow
