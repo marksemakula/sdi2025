@@ -1,14 +1,5 @@
-# Netlify built-in services (Identity, Functions, Large Media) MUST NOT be
-# caught by the SPA catch-all below. Add an explicit passthrough so the edge
-# always forwards these requests to Netlify's own infrastructure.
-/.netlify/identity /.netlify/identity 200
-/.netlify/identity/* /.netlify/identity/:splat 200
-/.netlify/functions/* /.netlify/functions/:splat 200
-
-# Pass admin CMS static files (config.yml, index.html) through to the deploy directory
-# This MUST come before the SPA catch-all below, otherwise Netlify serves
-# index.html for every /admin/* request including config.yml → 404 in Decap CMS
-/admin/* /admin/:splat 200
-
-# SPA catch-all – serves index.html for all React-Router client-side routes
+# SPA catch-all – serves the React app for all client-side routes.
+# Netlify automatically serves ANY existing file in the deploy directory BEFORE
+# this rule fires (force is false by default), so static assets such as
+# /admin/config.yml, /admin/index.html, and /.netlify/* are unaffected.
 /* /index.html 200

@@ -3,41 +3,10 @@
   publish = "dist"
   functions = "netlify/functions"
 
-# Netlify built-in services must not be intercepted by the SPA catch-all.
-# Explicit 200 passthroughs ensure Identity and Functions operate correctly.
-[[redirects]]
-  from = "/.netlify/identity"
-  to = "/.netlify/identity"
-  status = 200
-  force = false
-
-[[redirects]]
-  from = "/.netlify/identity/*"
-  to = "/.netlify/identity/:splat"
-  status = 200
-  force = false
-
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-  force = false
-
-# Pass Netlify/Decap CMS admin files directly to their static counterparts.
-# Must be declared BEFORE the SPA catch-all so config.yml is never shadowed.
-[[redirects]]
-  from = "/admin"
-  to = "/admin/index.html"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/admin/*"
-  to = "/admin/:splat"
-  status = 200
-  force = false
-
-# SPA catch-all – all other routes render the React app.
+# SPA catch-all – serves the React app for all client-side routes.
+# Netlify serves any existing file in the publish directory BEFORE this rule
+# fires (force defaults to false), so /admin/config.yml, /admin/index.html,
+# and /.netlify/* API calls are all handled correctly without explicit rules.
 [[redirects]]
   from = "/*"
   to = "/index.html"
