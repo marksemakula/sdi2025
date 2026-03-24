@@ -7,6 +7,7 @@ import ReferralForm from '../components/referral/ReferralForm';
 import ScheduleViewer from '../components/referral/ScheduleViewer';
 import SuccessModal from '../components/common/SuccessModal';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Referral = () => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -43,6 +44,8 @@ const Referral = () => {
           </motion.div>
         </div>
       </div>
+
+      <Breadcrumb items={[{ name: 'Book Appointment & Referral', url: '/referral' }]} />
 
       <div className="container-corporate py-12 -mt-8">
         <motion.div

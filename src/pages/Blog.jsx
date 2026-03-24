@@ -2,37 +2,56 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight, FaCalendarAlt, FaTag } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { fetchBlogPosts } from '../store/slices/blogSlice';
 
 const Blog = () => {
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('q') || '';
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const { posts, loading, error } = useSelector(state => state.blog);
+
+  // Filter posts by search query (powers the SitelinksSearchBox at /blog?q=...)
+  // Computed early so we can reference filteredPosts in effects below
+  const filteredPosts = searchQuery
+    ? posts.filter(
+        (p) =>
+          p.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.category?.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : posts;
 
   // Fetch blog posts on mount
   useEffect(() => {
     dispatch(fetchBlogPosts());
   }, [dispatch]);
 
-  // Auto-advance carousel
+  // Reset carousel index when search query changes
   useEffect(() => {
-    if (!isAutoPlaying || posts.length === 0) return;
+    setCurrentIndex(0);
+  }, [searchQuery]);
+
+  // Auto-advance carousel (disabled when actively searching)
+  useEffect(() => {
+    if (!isAutoPlaying || filteredPosts.length === 0 || searchQuery) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
-        prevIndex === posts.length - 1 ? 0 : prevIndex + 1
+        prevIndex === filteredPosts.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, posts.length]);
+  }, [isAutoPlaying, filteredPosts.length, searchQuery]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === posts.length - 1 ? 0 : prevIndex + 1
+      prevIndex === filteredPosts.length - 1 ? 0 : prevIndex + 1
     );
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
@@ -40,7 +59,7 @@ const Blog = () => {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? posts.length - 1 : prevIndex - 1
+      prevIndex === 0 ? filteredPosts.length - 1 : prevIndex - 1
     );
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
@@ -68,12 +87,16 @@ const Blog = () => {
     );
   }
 
+  // Filter posts by search query (powered by the SitelinksSearchBox at /blog?q=...)
+  // NOTE: filteredPosts is now computed at the top of the component (before useEffects)
+  // and is not re-declared here – see the filteredPosts const near the top.
+
   // Determine which posts to show based on currentIndex
   const visiblePosts = [];
-  const postsToShow = Math.min(3, posts.length);
+  const postsToShow = Math.min(3, filteredPosts.length);
   for (let i = 0; i < postsToShow; i++) {
-    const index = (currentIndex + i) % posts.length;
-    visiblePosts.push(posts[index]);
+    const index = (currentIndex + i) % filteredPosts.length;
+    visiblePosts.push(filteredPosts[index]);
   }
 
   return (
@@ -84,6 +107,7 @@ const Blog = () => {
         keywords="maternity blog Uganda, pregnancy tips Jinja, antenatal advice Uganda, women's health articles, gynaecology news Uganda, obstetrics blog, prenatal care tips"
         url="https://www.specialistdoctors-international.org/blog"
       />
+      <Breadcrumb items={[{ name: 'Health Blog', url: '/blog' }]} />
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -92,9 +116,18 @@ const Blog = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl font-bold text-tertiary mb-4">Our Blog</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Stay updated with the latest news, insights, and trends in healthcare.
-          </p>
+          {searchQuery ? (
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Search results for: <span className="font-semibold text-primary">&ldquo;{searchQuery}&rdquo;</span>
+              {filteredPosts.length === 0 && (
+                <span className="block mt-2 text-base text-gray-500">No articles found. Try a different keyword.</span>
+              )}
+            </p>
+          ) : (
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Stay updated with the latest news, insights, and trends in healthcare.
+            </p>
+          )}
         </motion.div>
 
         <div className="relative">
@@ -143,7 +176,7 @@ const Blog = () => {
             ))}
           </div>
 
-          {posts.length > 1 && (
+          {filteredPosts.length > 1 && (
             <>
               <button 
                 onClick={prevSlide}
@@ -163,9 +196,9 @@ const Blog = () => {
           )}
         </div>
 
-        {posts.length > 1 && (
+        {filteredPosts.length > 1 && (
           <div className="flex justify-center mt-8 space-x-2">
-            {posts.map((_, index) => (
+            {filteredPosts.map((_, index) => (
               <button
                 key={index}
                 onClick={() => {

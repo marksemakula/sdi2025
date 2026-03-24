@@ -43,5 +43,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- Donate Page -->
+  <url>
+    <loc>https://www.specialistdoctors-international.org/donate</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 </urlset>

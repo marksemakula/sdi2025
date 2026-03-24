@@ -9,6 +9,7 @@ import Telemedicine from './pages/Telemedicine';
 import AdminPanel from './pages/AdminPanel';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import Donate from './pages/Donate';
 import { useEffect } from 'react';
 
 function ScrollToTop() {
@@ -38,6 +39,7 @@ function App() {
             <Route path="/telemedicine" element={<Telemedicine />} errorElement={<div>Error loading Telemedicine</div>} />
             <Route path="/blog" element={<Blog />} errorElement={<div>Error loading Blog</div>} />
             <Route path="/blog/:postId" element={<BlogPost />} errorElement={<div>Error loading Blog Post</div>} />
+            <Route path="/donate" element={<Donate />} errorElement={<div>Error loading Donate Page</div>} />
             <Route path="/admin" element={<AdminPanel />} errorElement={<div>Error loading Admin Panel</div>} />
             <Route path="*" element={<div>404 Not Found</div>} />
           </Routes>

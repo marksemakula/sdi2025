@@ -5,6 +5,7 @@ import JobListings from '../components/careers/JobListings';
 import ApplicationForm from '../components/careers/ApplicationForm';
 import CurrentOpenings from '../components/careers/CurrentOpenings';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Careers = () => {
   const [selectedPosition, setSelectedPosition] = useState(null);
@@ -36,6 +37,8 @@ const Careers = () => {
           </motion.div>
         </div>
       </div>
+
+      <Breadcrumb items={[{ name: 'Medical Careers', url: '/careers' }]} />
 
       <div className="container-corporate py-12 -mt-8">
         <motion.div

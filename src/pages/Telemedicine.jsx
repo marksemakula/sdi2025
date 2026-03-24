@@ -4,6 +4,7 @@ import ConsultationRoom from '../components/telemedicine/ConsultationRoom';
 import ConsultationQueue from '../components/telemedicine/ConsultationQueue';
 import PreConsultationForm from '../components/telemedicine/PreConsultationForm';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Telemedicine = () => {
   const [consultationStarted, setConsultationStarted] = useState(false);
@@ -36,6 +37,8 @@ const Telemedicine = () => {
           </motion.div>
         </div>
       </div>
+
+      <Breadcrumb items={[{ name: 'Telemedicine Consultation', url: '/telemedicine' }]} />
 
       <div className="container-corporate py-12 -mt-8">
         <motion.div

@@ -45,7 +45,9 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+    <nav
+      aria-label="Main navigation"
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
       useTransparentStyle 
         ? 'bg-transparent' 
         : 'bg-white/95 backdrop-blur-md shadow-lg'
@@ -90,6 +92,7 @@ const Navigation = () => {
                 <Link
                   key={link.to}
                   to={link.to}
+                  aria-current={location.pathname === link.to ? 'page' : undefined}
                   className="ml-2 btn-secondary text-sm py-2 px-5"
                 >
                   Donate
@@ -98,6 +101,7 @@ const Navigation = () => {
                 <Link
                   key={link.to}
                   to={link.to}
+                  aria-current={location.pathname === link.to ? 'page' : undefined}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                     useTransparentStyle
                       ? location.pathname === link.to
@@ -117,6 +121,7 @@ const Navigation = () => {
             {/* CTA Button */}
             <Link
               to="/referral"
+              aria-label="Book an appointment at Specialist Doctors International"
               className="ml-4 btn-primary text-sm py-2 px-5"
             >
               Book Appointment
@@ -160,6 +165,7 @@ const Navigation = () => {
                     key={link.to}
                     to={link.to}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    aria-current={location.pathname === link.to ? 'page' : undefined}
                     className="flex items-center justify-center space-x-2 px-4 py-3 rounded-xl text-base font-medium btn-secondary"
                   >
                     <span>Donate</span>
@@ -169,6 +175,7 @@ const Navigation = () => {
                     key={link.to}
                     to={link.to}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    aria-current={location.pathname === link.to ? 'page' : undefined}
                     className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium font-body
                       transition-all duration-200
                       ${location.pathname === link.to 
@@ -185,6 +192,7 @@ const Navigation = () => {
               <Link
                 to="/referral"
                 onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Book an appointment at Specialist Doctors International"
                 className="block w-full btn-primary text-center mt-4"
               >
                 Book Appointment

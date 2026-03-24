@@ -219,23 +219,79 @@
     }
     </script>
     
-    <!-- Breadcrumb Structured Data -->
+    <!-- Structured Data – WebSite + SitelinksSearchBox
+         Enables Google to show a search box inside the search result and
+         signals the canonical site identity used for sitelinks generation. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
+      "@type": "WebSite",
+      "name": "Specialist Doctors International",
+      "alternateName": "SDI",
+      "url": "https://www.specialistdoctors-international.org",
+      "description": "Leading maternity and women's healthcare facility in Jinja, Uganda – gynaecologist, obstetrician, and antenatal care services.",
+      "inLanguage": "en-UG",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.specialistdoctors-international.org/blog?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Structured Data – Site Navigation (helps search engines map page hierarchy)
+         Each ListItem corresponds to a primary navigation destination. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Main Navigation – Specialist Doctors International",
+      "description": "Primary navigation links for Specialist Doctors International website",
       "itemListElement": [
         {
-          "@type": "ListItem",
+          "@type": "SiteNavigationElement",
           "position": 1,
           "name": "Home",
-          "item": "https://www.specialistdoctors-international.org/"
+          "description": "Specialist Doctors International – maternity and women's health care in Jinja, Uganda",
+          "url": "https://www.specialistdoctors-international.org/"
         },
         {
-          "@type": "ListItem",
+          "@type": "SiteNavigationElement",
           "position": 2,
-          "name": "Maternity & Antenatal Care",
-          "item": "https://www.specialistdoctors-international.org/referral"
+          "name": "Book Appointment & Referral",
+          "description": "Book an antenatal, maternity, or gynaecologist appointment in Jinja",
+          "url": "https://www.specialistdoctors-international.org/referral"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "Telemedicine",
+          "description": "Online gynaecologist and obstetrician consultations from anywhere in Uganda",
+          "url": "https://www.specialistdoctors-international.org/telemedicine"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "Careers",
+          "description": "Medical career opportunities for gynaecologists, obstetricians, and healthcare staff",
+          "url": "https://www.specialistdoctors-international.org/careers"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "name": "Blog",
+          "description": "Maternity and women's health articles, pregnancy tips, and antenatal advice",
+          "url": "https://www.specialistdoctors-international.org/blog"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 6,
+          "name": "Donate",
+          "description": "Support safe deliveries and women's health care in Uganda",
+          "url": "https://www.specialistdoctors-international.org/donate"
         }
       ]
     }

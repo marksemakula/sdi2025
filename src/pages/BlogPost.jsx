@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaCalendarAlt, FaTag, FaArrowLeft, FaUser } from 'react-icons/fa';
 import { fetchBlogPosts } from '../store/slices/blogSlice';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 
 const BlogPost = () => {
   const { postId } = useParams();
@@ -52,6 +53,12 @@ const BlogPost = () => {
         keywords={`${post.category}, healthcare Uganda, medical article`}
         url={`https://www.specialistdoctors-international.org/blog/${post.slug}`}
         image={post.image}
+      />
+      <Breadcrumb
+        items={[
+          { name: 'Health Blog', url: '/blog' },
+          { name: post.title, url: `/blog/${post.slug || post.id}` },
+        ]}
       />
       <div className="max-w-3xl mx-auto px-4">
         <Link 
