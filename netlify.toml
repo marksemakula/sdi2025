@@ -3,6 +3,21 @@
   publish = "dist"
   functions = "netlify/functions"
 
+# Pass Netlify/Decap CMS admin files directly to their static counterparts.
+# Must be declared BEFORE the SPA catch-all so config.yml is never shadowed.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/:splat"
+  status = 200
+  force = false
+
+# SPA catch-all – all other routes render the React app.
 [[redirects]]
   from = "/*"
   to = "/index.html"
