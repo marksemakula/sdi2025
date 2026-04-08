@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaUsers, FaChartBar, FaCalendarAlt, FaCog, FaBlog, FaBriefcase } from 'react-icons/fa';
+import SEO from '../components/SEO';
 import DashboardStats from '../components/admin/DashboardStats';
 import PatientRecords from '../components/admin/PatientRecords';
 import Analytics from '../components/admin/Analytics';
@@ -15,7 +16,15 @@ const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
 
   if (!isAuthenticated) {
-    return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
+    return (
+      <>
+        <SEO
+          title="Admin | Specialist Doctors International"
+          robots="noindex, nofollow"
+        />
+        <AdminLogin onLogin={() => setIsAuthenticated(true)} />
+      </>
+    );
   }
 
   const tabs = [
@@ -48,6 +57,10 @@ const AdminPanel = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
+      <SEO
+        title="Admin | Specialist Doctors International"
+        robots="noindex, nofollow"
+      />
       <div className="max-w-7xl mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

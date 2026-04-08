@@ -3,6 +3,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://www.specialistdoctors-international.org/sitemap.xml
@@ -10,9 +12,11 @@ Sitemap: https://www.specialistdoctors-international.org/sitemap.xml
 # Allow all major search engines
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
 
 User-agent: Yahoo! Slurp
 Allow: /
@@ -20,12 +24,6 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# Disallow admin pages from indexing
-Disallow: /admin
-
 # Allow images for better SEO
 User-agent: Googlebot-Image
 Allow: /images/
-
-# Crawl delay to be respectful to server
-Crawl-delay: 1

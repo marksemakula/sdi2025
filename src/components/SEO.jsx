@@ -11,7 +11,8 @@ const SEO = ({
   keywords = 'maternity Jinja, antenatal Uganda, gynaecologist Jinja, obstetrician Uganda',
   image = '/images/SDI_Logo.png',
   url = 'https://www.specialistdoctors-international.org/',
-  type = 'website'
+  type = 'website',
+  robots = ''
 }) => {
   const fullTitle = title.includes('Specialist Doctors International') 
     ? title 
@@ -31,6 +32,7 @@ const SEO = ({
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={fullKeywords} />
+      {robots && <meta name="robots" content={robots} />}
       
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
@@ -59,7 +61,8 @@ SEO.propTypes = {
   keywords: PropTypes.string,
   image: PropTypes.string,
   url: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  robots: PropTypes.string
 };
 
 export default SEO;

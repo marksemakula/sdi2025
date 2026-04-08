@@ -51,5 +51,21 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- Blog Post: Postpartum Haemorrhage -->
+  <url>
+    <loc>https://www.specialistdoctors-international.org/blog/2026-02-08-postpartum-haemorrhage</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Post: Imaging Urgency Uganda -->
+  <url>
+    <loc>https://www.specialistdoctors-international.org/blog/2026-02-09-imaging-urgency-uganda</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
