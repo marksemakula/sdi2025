@@ -25,8 +25,25 @@ const SEO = ({
     ? image 
     : `https://www.specialistdoctors-international.org${image}`;
 
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalOrganization',
+    name: 'Specialist Doctors International',
+    url: 'https://www.specialistdoctors-international.org/',
+    logo: 'https://www.specialistdoctors-international.org/images/SDI_Logo.png',
+    sameAs: [
+      'https://www.facebook.com/specialistdoctorsintl/',
+      'https://www.linkedin.com/company/specialist-doctors-international',
+    ],
+  };
+
   return (
     <Helmet>
+      {/* Organization structured data for search engines */}
+      <script type="application/ld+json">
+        {JSON.stringify(organizationSchema)}
+      </script>
+
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="title" content={fullTitle} />

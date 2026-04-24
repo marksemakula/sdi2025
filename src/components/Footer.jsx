@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaFacebook, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt, FaApple, FaGooglePlay, FaSlack, FaTiktok, FaDiscord, FaSnapchatGhost, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaLinkedin, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt, FaApple, FaGooglePlay, FaSlack, FaTiktok, FaDiscord, FaSnapchatGhost, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter, FaThreads } from 'react-icons/fa6';
 
 const Footer = () => {
@@ -53,11 +53,23 @@ const Footer = () => {
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
-                href="#"
+                href="https://www.facebook.com/specialistdoctorsintl/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-300 hover:text-primary transition-colors duration-300"
                 aria-label="Facebook"
               >
                 <FaFacebook size={18} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                href="https://www.linkedin.com/company/specialist-doctors-international"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-primary transition-colors duration-300"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={18} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}

@@ -17,7 +17,7 @@
     "date-fns": "^4.1.0",
     "echarts": "^6.0.0",
     "echarts-for-react": "^3.0.2",
-    "exceljs": "^4.4.0",
+    "exceljs": "^3.4.0",
     "framer-motion": "^11.0.8",
     "glob": "^11.0.2",
     "postcss": "^8.4.49",
@@ -30,7 +30,10 @@
     "tailwindcss": "^3.4.17",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",
-    "uuid": "^11.1.0"
+    "uuid": "^14.0.0"
+  },
+  "overrides": {
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.28",
