@@ -21,7 +21,7 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const message = `New Appointment Request:
     Patient Name: ${formData.patientName}
     Referred By: ${formData.referredBy || 'Not specified'}
@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SEO 
+      <SEO
         title="Best Maternity & Antenatal Care in Jinja, Uganda | Gynaecologist & Obstetrician"
         description="Specialist Doctors International offers the best maternity care, antenatal services, gynaecologist and obstetrician consultations in Jinja, Uganda. Expert prenatal care, safe deliveries, and comprehensive women's health services. Book your appointment today!"
         keywords="maternity hospital Jinja, best antenatal care Uganda, gynaecologist near me Jinja, obstetrician Uganda, pregnancy care Jinja, safe delivery Uganda, ANC clinic Jinja, women's health specialist Uganda, prenatal checkup Jinja, fertility clinic Uganda"
@@ -45,10 +45,10 @@ const Home = () => {
       {/* Hero Section with Carousel - starts at top behind navbar */}
       <section className="relative h-[700px] overflow-hidden -mt-[72px]">
         <HeroCarousel />
-        
+
         <div className="relative z-10 h-full flex items-center pt-16">
           <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -58,22 +58,22 @@ const Home = () => {
                 🏥 Premier Healthcare in Jinja, Uganda
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-display leading-tight"
-                  style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
                 Because We Care
               </h1>
               <p className="text-lg md:text-xl mb-8 font-body opacity-95 leading-relaxed"
-                 style={{ textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
-                Access specialized maternity, antenatal, and women's healthcare services 
+                style={{ textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
+                Access specialized maternity, antenatal, and women's healthcare services
                 from leading gynaecologists and obstetricians.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="/referral" 
+                <a
+                  href="/referral"
                   className="btn-secondary text-center shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
                 >
                   Make a Referral
                 </a>
-                <a 
+                <a
                   href="/telemedicine"
                   className="btn bg-white/95 hover:bg-white text-tertiary shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
                 >
@@ -90,9 +90,9 @@ const Home = () => {
               style={{ width: 'calc(256px * 1.62)' }}
             >
               <div className="relative w-full h-full">
-                <img 
-                  src="/images/SDI_Logo.png" 
-                  alt="" 
+                <img
+                  src="/images/SDI_Logo.png"
+                  alt=""
                   aria-hidden="true"
                   className="absolute w-full h-auto blur-sm opacity-80"
                   style={{
@@ -100,9 +100,9 @@ const Home = () => {
                     transform: 'translate(2px, 2px)'
                   }}
                 />
-                <img 
-                  src="/images/SDI_Logo.png" 
-                  alt="SDI Logo" 
+                <img
+                  src="/images/SDI_Logo.png"
+                  alt="SDI Logo"
                   className="w-full h-auto relative drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]"
                 />
               </div>
@@ -129,14 +129,14 @@ const Home = () => {
                 Schedule your consultation with our specialist doctors today
               </p>
             </div>
-            
+
             <form onSubmit={handleSubmit}>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="form-group">
                     <label className="label">Patient Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       name="patientName"
                       value={formData.patientName}
                       onChange={handleChange}
@@ -145,10 +145,10 @@ const Home = () => {
                       required
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="label">Referred By (Optional)</label>
-                    <input 
+                    <input
                       type="text"
                       name="referredBy"
                       value={formData.referredBy}
@@ -157,10 +157,10 @@ const Home = () => {
                       placeholder="Referrer name or contact"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="label">Service Needed</label>
-                    <select 
+                    <select
                       name="serviceNeeded"
                       value={formData.serviceNeeded}
                       onChange={handleChange}
@@ -180,11 +180,11 @@ const Home = () => {
                     </select>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="form-group">
                     <label className="label">Phone Number</label>
-                    <input 
+                    <input
                       type="tel"
                       name="phoneNumber"
                       value={formData.phoneNumber}
@@ -194,7 +194,7 @@ const Home = () => {
                       required
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="label">Symptoms (Optional)</label>
                     <input
@@ -206,11 +206,11 @@ const Home = () => {
                       placeholder="Describe symptoms briefly"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="label">Preferred Date</label>
-                    <input 
-                      type="date" 
+                    <input
+                      type="date"
                       name="appointmentDate"
                       value={formData.appointmentDate}
                       onChange={handleChange}
@@ -219,9 +219,9 @@ const Home = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="pt-6 text-center">
-                  <button 
+                  <button
                     type="submit"
                     className="btn-primary px-12 py-3.5 text-base"
                   >
@@ -238,7 +238,7 @@ const Home = () => {
       <section className="section bg-white">
         <div className="container-corporate">
           <div className="section-header">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -254,7 +254,7 @@ const Home = () => {
             {[
               {
                 icon: FaUserMd,
-                image: "/images/services/specialist-consultations.jpg",
+                image: "/images/services/Dr.Namala_Angella.png",
                 title: "Specialist Consultations",
                 description: "Access to leading medical specialists across various disciplines"
               },
@@ -279,13 +279,13 @@ const Home = () => {
                 className="card group cursor-pointer"
               >
                 <div className="h-52 overflow-hidden">
-                  <img 
-                    src={service.image} 
+                  <img
+                    src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                
+
                 <div className="p-6">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
                     <service.icon className="text-primary text-2xl group-hover:text-white transition-colors" />
@@ -303,7 +303,7 @@ const Home = () => {
       <section className="py-16" style={{ backgroundColor: '#ECECEC' }}>
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Health Partners</h2>
-          
+
           {/* Define partners array outside of JSX */}
           {(() => {
             const partners = [
@@ -319,22 +319,22 @@ const Home = () => {
               { name: 'JUBILEE', logo: '/images/partners/jubilee.png' },
               { name: 'AAR', logo: '/images/partners/aar.png' },
             ];
-            
+
             return (
               <div className="relative overflow-hidden">
-                <div 
+                <div
                   className="flex w-max animate-scroll"
                   onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
                   onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
                 >
                   {/* Original partners + duplicated for continuous scroll */}
                   {[...partners, ...partners].map((partner, index) => (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className="flex-shrink-0 mx-4 p-6"
                     >
-                      <img 
-                        src={partner.logo} 
+                      <img
+                        src={partner.logo}
                         alt={partner.name}
                         className="h-16 w-auto object-contain"
                       />
