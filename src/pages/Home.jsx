@@ -254,7 +254,7 @@ const Home = () => {
             {[
               {
                 icon: FaUserMd,
-                image: "/images/services/Dr.Namala_Angella.png",
+                image: "/images/services/Dr.Namala_Angella.jpeg",
                 title: "Specialist Consultations",
                 description: "Access to leading medical specialists across various disciplines"
               },
