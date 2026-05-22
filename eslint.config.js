@@ -1,38 +1,39 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
+import pluginVue from 'eslint-plugin-vue';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
 
 export default [
-  { ignores: ['dist'] },
-  js.configs.recommended,
   {
-    files: ['**/*.{js,jsx}'],
+    ignores: ['dist', 'node_modules'],
+  },
+  js.configs.recommended,
+  ...pluginVue.configs['flat/recommended'],
+  {
+    files: ['**/*.{ts,vue}'],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: {
         ...globals.browser,
         ...globals.node,
-        React: true,
-        JSX: true
       },
+      parser: tsParser,
       parserOptions: {
+        parser: tsParser,
         ecmaFeatures: {
-          jsx: true
+          jsx: true,
         },
-        sourceType: 'module'
-      }
+      },
     },
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      '@typescript-eslint': tsPlugin,
     },
     rules: {
-      'no-undef': 'error', 
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'error',
-      'react-refresh/only-export-components': 'off',
-      'no-unused-vars': 'off'
+      'vue/multi-word-component-names': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-undef': 'off', // TypeScript handles this better
     },
-  }
+  },
 ];

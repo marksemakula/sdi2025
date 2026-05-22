@@ -3,7 +3,7 @@
 
 User-agent: *
 Allow: /
-Disallow: /admin
+Disallow: /admin/config.yml
 Crawl-delay: 1
 
 # Sitemap location
@@ -12,11 +12,11 @@ Sitemap: https://www.specialistdoctors-international.org/sitemap.xml
 # Allow all major search engines
 User-agent: Googlebot
 Allow: /
-Disallow: /admin
+Disallow: /admin/config.yml
 
 User-agent: Bingbot
 Allow: /
-Disallow: /admin
+Disallow: /admin/config.yml
 
 User-agent: Yahoo! Slurp
 Allow: /
