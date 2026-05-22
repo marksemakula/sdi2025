@@ -59,9 +59,9 @@ import { Icon } from '@iconify/vue';
           <p class="text-gray-300 text-sm">
             Access telemedicine services anytime, anywhere with our mobile app.
           </p>
-          <div class="space-y-3">
+          <div class="flex flex-col sm:flex-row md:flex-col gap-3">
             <a href="#"
-              class="flex items-center space-x-3 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors duration-300 hover:scale-105 inline-flex"
+              class="flex items-center space-x-3 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 w-48"
             >
               <Icon icon="fa6-brands:apple" class="text-white" :width="20" />
               <div>
@@ -70,7 +70,7 @@ import { Icon } from '@iconify/vue';
               </div>
             </a>
             <a href="#"
-              class="flex items-center space-x-3 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors duration-300 hover:scale-105 inline-flex"
+              class="flex items-center space-x-3 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 w-48"
             >
               <Icon icon="fa6-brands:google-play" class="text-white" :width="20" />
               <div>
