@@ -57,7 +57,7 @@ const generateWeeklySlots = (): TimeSlot[] => {
 
 const defaultSchedules: DoctorSchedule[] = [
   { doctorId: 1, name: 'Dr. Namala Angella', specialty: 'Consultant Obs/Gyn', availableSlots: generateWeeklySlots() },
-  { doctorId: 2, name: 'Dr. Nuwamanya Lilian', specialty: 'GP', availableSlots: generateWeeklySlots() },
+  { doctorId: 2, name: 'Dr. Isaac Obenet', specialty: 'GP', availableSlots: generateWeeklySlots() },
   { doctorId: 3, name: 'Dr. Maseruka Robert', specialty: 'Consultant Surgeon', availableSlots: generateWeeklySlots() },
 ];
 
